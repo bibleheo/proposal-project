@@ -18,8 +18,12 @@
 
 각 폴더는 원본 리포지토리의 `index.html`을 진입점으로 그대로 유지합니다.
 
-## 🚀 배포
+## 🚀 배포 (GitHub Pages)
 
-`main` 브랜치에 푸시하면 `.github/workflows/pages.yml` 워크플로가 저장소 루트 전체를 GitHub Pages로 배포합니다.
+`Settings → Pages → Build and deployment`에서 **Source: Deploy from a branch**,
+**Branch: `main` / `/ (root)`** 로 설정하면 저장소 루트가 그대로 배포됩니다.
 - 랜딩 페이지: `/`
 - 각 제안서: `/<폴더명>/`
+
+루트에 `.nojekyll` 파일이 있어 Jekyll 처리 없이 정적 파일이 그대로 서빙됩니다.
+`main` 브랜치에 푸시하면 자동으로 다시 배포됩니다.
