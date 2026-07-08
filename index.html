@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BlueTNS 제안서 모음</title>
+<meta name="description" content="블루티엔에스(BlueTNS) 제안서 통합 포털 — ZWCAD, ZWCAD 365, ZYXCAD AX, 영상 제안서" />
+<meta property="og:title" content="BlueTNS 제안서 모음" />
+<meta property="og:description" content="블루티엔에스 제안서 통합 포털" />
+<style>
+  :root{
+    --bg:#0b1020; --card:#141b31; --card2:#1b2340; --line:#26314f;
+    --fg:#eef2ff; --muted:#9aa7c7; --accent:#5b8cff; --accent2:#39d3bb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:radial-gradient(1200px 700px at 80% -10%,#1a2547 0%,transparent 60%),
+               radial-gradient(900px 600px at -10% 10%,#122b3a 0%,transparent 55%),
+               var(--bg);
+    color:var(--fg); min-height:100vh; line-height:1.55;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:72px 24px 96px}
+  header{margin-bottom:44px}
+  .kicker{display:inline-block; font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent2); font-weight:700; margin-bottom:14px}
+  h1{font-size:clamp(34px,6vw,58px); line-height:1.05; margin:0 0 14px; font-weight:800; letter-spacing:-.02em}
+  .sub{color:var(--muted); font-size:clamp(15px,2.4vw,18px); max-width:640px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; margin-top:8px}
+  a.card{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:linear-gradient(160deg,var(--card),var(--card2));
+    border:1px solid var(--line); border-radius:18px; padding:24px 22px;
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  a.card:hover{transform:translateY(-4px); border-color:var(--accent);
+    box-shadow:0 14px 40px -18px rgba(91,140,255,.7)}
+  .tag{font-size:12px; font-weight:700; letter-spacing:.06em; color:var(--accent2); margin-bottom:12px}
+  .ctitle{font-size:21px; font-weight:800; margin:0 0 8px; letter-spacing:-.01em}
+  .cdesc{color:var(--muted); font-size:14.5px; margin:0 0 18px; flex:1}
+  .go{font-size:14px; font-weight:700; color:var(--accent); display:inline-flex; align-items:center; gap:6px}
+  footer{margin-top:56px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); padding-top:22px}
+  footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="kicker">BlueTNS · Proposals</span>
+      <h1>블루티엔에스 제안서 모음</h1>
+      <p class="sub">개별 제안서 프로젝트를 하나의 포털로 통합했습니다. 아래에서 원하는 제안서를 열어보세요.</p>
+    </header>
+
+    <main class="grid">
+      <a class="card" href="./zwcad-proposal/">
+        <span class="tag">CAD</span>
+        <h2 class="ctitle">ZWCAD 제안서</h2>
+        <p class="cdesc">지금 ZWCAD를 제안하는 이유 — 함께 성장해 온 발자취와 제안 구성.</p>
+        <span class="go">제안서 열기 →</span>
+      </a>
+
+      <a class="card" href="./zwcad365-proposal/">
+        <span class="tag">CAD · Subscription</span>
+        <h2 class="ctitle">ZWCAD 365</h2>
+        <p class="cdesc">구독형 ZWCAD 365 제안서.</p>
+        <span class="go">제안서 열기 →</span>
+      </a>
+
+      <a class="card" href="./zyxcad-ax-proposal/">
+        <span class="tag">국산 CAD</span>
+        <h2 class="ctitle">ZYXCAD AX 제안서</h2>
+        <p class="cdesc">ZYXCAD AX / ZYX SPACE 소개 — 왜 국산 CAD인가. HTML 슬라이드 22장.</p>
+        <span class="go">제안서 열기 →</span>
+      </a>
+
+      <a class="card" href="./ZWCAD-Video-Proposal/">
+        <span class="tag">Video</span>
+        <h2 class="ctitle">ZWCAD 영상 제안서</h2>
+        <p class="cdesc">영상 기반 6부작 제안 — AutoCAD 현황, 호환성, 비용/라이선스, ZDream, 지원, Why BlueTNS.</p>
+        <span class="go">제안서 열기 →</span>
+      </a>
+
+      <a class="card" href="./bts-proposal/">
+        <span class="tag">Company</span>
+        <h2 class="ctitle">블루티엔에스 제안서</h2>
+        <p class="cdesc">블루티엔에스(BlueTNS) 회사·솔루션 종합 제안서.</p>
+        <span class="go">제안서 열기 →</span>
+      </a>
+    </main>
+
+    <footer>
+      BlueTNS 제안서 통합 포털 · GitHub Pages로 배포됩니다.
+    </footer>
+  </div>
+</body>
+</html>

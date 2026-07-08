@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#05080f;overflow:hidden}
+@keyframes sceneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes recBlink{0%,100%{opacity:1}50%{opacity:.25}}
+</style>
+</helmet>
+<div style="position:fixed;inset:0;background:#05080f;overflow:hidden;font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;cursor:pointer;" onClick="{{ advance }}">
+  <div ref="{{ stageRef }}" style="position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform:translate(-50%,-50%);transform-origin:center center;">
+
+    <!-- ===================== SCENE 0 · 인트로 ===================== -->
+    <sc-if value="{{ scene0 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(120% 120% at 78% 15%,#1a3a6b,#10294a 52%,#0a1628 100%);overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:96px 96px;"></div>
+      <div style="position:absolute;left:120px;top:360px;max-width:1300px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.3em;color:#7fa8e6;font-weight:700;margin-bottom:28px;">EP3 · 비용 구조</div>
+        <h1 style="font-size:88px;line-height:1.1;font-weight:800;color:#fff;letter-spacing:-.025em;">얼마나, 어떻게<br>아끼나</h1>
+        <p style="margin-top:32px;font-size:32px;color:#cdd8e8;font-weight:500;">싸다가 아니라, <span style="color:#7cc47a;font-weight:700;">계획적으로 쓴다.</span></p>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 1 · EA vs LA ===================== -->
+    <sc-if value="{{ scene1 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:#eef1f6;overflow:hidden;">
+      <div style="position:absolute;left:120px;top:90px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#2563eb;font-weight:700;margin-bottom:18px;">구매 방식 두 가지</div>
+        <h2 style="font-size:52px;line-height:1.12;font-weight:800;color:#0a1628;letter-spacing:-.02em;">EA냐 LA냐 — 회사에 맞게 고릅니다</h2>
+      </div>
+      <!-- center labels -->
+      <div style="position:absolute;left:856px;top:300px;display:flex;gap:14px;">
+        <div style="width:64px;height:392px;border-radius:14px;background:#2563eb;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:30px;font-weight:800;"><span>E</span><span>A</span><span style="font-size:22px;margin-top:8px;">방</span><span style="font-size:22px;">식</span></div>
+        <div style="width:64px;height:392px;border-radius:14px;background:#0d9488;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:30px;font-weight:800;"><span>L</span><span>A</span><span style="font-size:22px;margin-top:8px;">방</span><span style="font-size:22px;">식</span></div>
+      </div>
+      <!-- rows -->
+      <div style="position:absolute;left:120px;top:300px;width:716px;display:flex;flex-direction:column;gap:14px;text-align:right;">
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateX({{ry2}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">계약 수량 +α 유연 제공</div><div style="font-size:19px;color:#475569;margin-top:4px;">계약 시점부터 전체 수량 활용</div></div>
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateX({{ry3}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">최신 버전 자동 업그레이드</div><div style="font-size:19px;color:#475569;margin-top:4px;">계약 기간 내 항상 최신 버전</div></div>
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateX({{ry4}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">가격 변동 없음</div><div style="font-size:19px;color:#475569;margin-top:4px;">예산을 계획적으로 운영</div></div>
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs5}};transform:translateX({{ry5}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">전체 비용 3년 분할</div><div style="font-size:19px;color:#475569;margin-top:4px;">계획적인 지출 구조</div></div>
+      </div>
+      <div style="position:absolute;left:1064px;top:300px;width:716px;display:flex;flex-direction:column;gap:14px;text-align:left;">
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateX(-{{ry2}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">필요한 수량만큼 구매</div><div style="font-size:19px;color:#475569;margin-top:4px;">단품 구매 방식</div></div>
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateX(-{{ry3}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">한 번 구매로 영구 소유</div><div style="font-size:19px;color:#475569;margin-top:4px;">영구 버전 라이선스</div></div>
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateX(-{{ry4}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">버전 업그레이드 가능</div><div style="font-size:19px;color:#475569;margin-top:4px;">구버전 버릴 필요 없음</div></div>
+        <div style="background:#fff;border-radius:12px;padding:20px 28px;box-shadow:0 8px 22px rgba(15,31,68,.06);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs5}};transform:translateX(-{{ry5}}px);"><div style="font-size:25px;font-weight:800;color:#0a1628;">독립형·네트워크 모두</div><div style="font-size:19px;color:#475569;margin-top:4px;">상황에 맞는 구성</div></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 2 · 현장·합사 ===================== -->
+    <sc-if value="{{ scene2 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f2744,#0a1628 65%);overflow:hidden;">
+      <div style="position:absolute;left:120px;top:300px;max-width:1300px;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:20px;letter-spacing:.3em;color:#7fa8e6;font-weight:700;margin-bottom:28px;">합리적 비용의 이유</div>
+        <h2 style="font-size:72px;line-height:1.16;font-weight:800;color:#fff;letter-spacing:-.025em;">본사뿐 아니라<br><span style="color:#5b8def;">현장·합사</span>까지</h2>
+      </div>
+      <div style="position:absolute;left:124px;top:640px;display:flex;gap:24px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="width:300px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 30px;"><div style="width:54px;height:54px;border-radius:12px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;font-size:28px;">🏢</div><div style="margin-top:22px;font-size:28px;font-weight:800;color:#fff;">본사</div><div style="margin-top:8px;font-size:20px;color:#9fb0c8;">중심 설계 거점</div></div>
+        <div style="width:300px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 30px;"><div style="width:54px;height:54px;border-radius:12px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;font-size:28px;">🏗️</div><div style="margin-top:22px;font-size:28px;font-weight:800;color:#fff;">현장</div><div style="margin-top:8px;font-size:20px;color:#9fb0c8;">필요할 때 바로</div></div>
+        <div style="width:300px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 30px;"><div style="width:54px;height:54px;border-radius:12px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;font-size:28px;">🤝</div><div style="margin-top:22px;font-size:28px;font-weight:800;color:#fff;">합사</div><div style="margin-top:8px;font-size:20px;color:#9fb0c8;">협업사까지 확장</div></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 3 · 라이선스 다이어그램 ===================== -->
+    <sc-if value="{{ scene3 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:#eef1f6;overflow:hidden;">
+      <div style="position:absolute;left:120px;top:100px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#2563eb;font-weight:700;margin-bottom:18px;">라이선스 운영 방식</div>
+        <h2 style="font-size:52px;line-height:1.12;font-weight:800;color:#0a1628;letter-spacing:-.02em;">설치는 무제한, <span style="color:#2563eb;">동시접속 수량</span>만 구매</h2>
+      </div>
+      <div style="position:absolute;left:120px;top:300px;width:560px;height:520px;background:#fff;border-radius:20px;box-shadow:0 16px 40px rgba(15,31,68,.08);padding:42px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="display:inline-block;padding:8px 20px;border-radius:999px;background:#0d9488;color:#fff;font-size:20px;font-weight:700;">독립실행형</div>
+        <div style="margin-top:60px;display:flex;align-items:center;justify-content:center;gap:34px;">
+          <div style="text-align:center;"><div style="width:120px;height:120px;border-radius:50%;border:3px solid #0d9488;display:flex;align-items:center;justify-content:center;font-size:46px;">🖥️</div><div style="margin-top:14px;font-size:22px;font-weight:700;color:#0a1628;">1 PC</div></div>
+          <div style="font-size:40px;color:#94a3b8;font-weight:300;">=</div>
+          <div style="text-align:center;"><div style="width:120px;height:120px;border-radius:50%;border:3px solid #2563eb;display:flex;align-items:center;justify-content:center;font-size:46px;">👤</div><div style="margin-top:14px;font-size:22px;font-weight:700;color:#0a1628;">1 License</div></div>
+        </div>
+        <div style="margin-top:56px;font-size:23px;line-height:1.5;color:#475569;text-align:center;">구매 수량만큼 각 PC에 설치·활성화하여 사용하는 방식</div>
+      </div>
+      <div style="position:absolute;left:712px;top:300px;width:560px;height:520px;background:#0a1628;border-radius:20px;box-shadow:0 16px 40px rgba(10,22,40,.2);padding:42px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+        <div style="display:inline-block;padding:8px 20px;border-radius:999px;background:#2563eb;color:#fff;font-size:20px;font-weight:700;">네트워크형</div>
+        <div style="position:relative;margin-top:40px;height:240px;">
+          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:rgba(37,99,235,.18);border:2px solid #5b8def;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:2;"><span style="font-size:34px;">🗄️</span><span style="font-size:15px;margin-top:2px;font-weight:700;">Server</span></div>
+          <div style="position:absolute;left:6%;top:4%;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(127,168,230,.5);display:flex;align-items:center;justify-content:center;font-size:24px;">👤</div>
+          <div style="position:absolute;right:6%;top:4%;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(127,168,230,.5);display:flex;align-items:center;justify-content:center;font-size:24px;">👤</div>
+          <div style="position:absolute;left:6%;bottom:4%;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(127,168,230,.5);display:flex;align-items:center;justify-content:center;font-size:24px;">👤</div>
+          <div style="position:absolute;right:6%;bottom:4%;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(127,168,230,.5);display:flex;align-items:center;justify-content:center;font-size:24px;">👤</div>
+        </div>
+        <div style="margin-top:34px;font-size:23px;line-height:1.5;color:#9fb0c8;text-align:center;">설치 수량 제한 없이, 서버에 동시 접속하여 사용하는 방식</div>
+      </div>
+      <div style="position:absolute;left:120px;top:864px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateY({{ry4}}px);"><div style="display:inline-flex;align-items:center;gap:16px;background:#0a1628;color:#fff;padding:20px 32px;border-radius:14px;"><span style="font-size:23px;color:#7fa8e6;font-weight:700;">핵심</span><span style="font-size:26px;font-weight:700;">필요한 만큼만 구매 — 인원이 늘어도 설치는 자유</span></div></div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 4 · 관리 도구 ===================== -->
+    <sc-if value="{{ scene4 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f2744,#0a1628 65%);overflow:hidden;">
+      <div style="position:absolute;left:120px;top:90px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#7fa8e6;font-weight:700;margin-bottom:18px;">네트워크 라이선스 관리</div>
+        <h2 style="font-size:50px;line-height:1.12;font-weight:800;color:#fff;letter-spacing:-.02em;">관리도 A사와 똑같이, 더 투명하게</h2>
+      </div>
+      <div style="position:absolute;left:120px;top:250px;width:560px;height:480px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="position:relative;width:100%;height:100%;border:1.5px solid rgba(127,168,230,.4);border-radius:8px;background:linear-gradient(160deg,rgba(20,40,72,.55),rgba(10,22,40,.25));display:flex;align-items:center;justify-content:center;">
+          <div style="position:absolute;top:14px;left:14px;width:26px;height:26px;border-top:2px solid #2563eb;border-left:2px solid #2563eb;"></div><div style="position:absolute;top:14px;right:14px;width:26px;height:26px;border-top:2px solid #2563eb;border-right:2px solid #2563eb;"></div><div style="position:absolute;bottom:14px;left:14px;width:26px;height:26px;border-bottom:2px solid #2563eb;border-left:2px solid #2563eb;"></div><div style="position:absolute;bottom:14px;right:14px;width:26px;height:26px;border-bottom:2px solid #2563eb;border-right:2px solid #2563eb;"></div>
+          <div style="position:absolute;top:18px;left:50px;font-family:'SF Mono',monospace;font-size:14px;letter-spacing:.12em;color:#7fa8e6;">LMTOOLS</div>
+          <div style="text-align:center;color:#9fb0c8;"><div style="font-family:'SF Mono',monospace;font-size:14px;letter-spacing:.18em;opacity:.55;">SCREEN&nbsp;RECORDING</div><div style="margin-top:12px;font-size:21px;font-weight:600;color:#cdd8e8;">LMTOOLS 서버 관리 화면</div></div>
+        </div>
+      </div>
+      <div style="position:absolute;left:712px;top:250px;width:560px;height:480px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="position:relative;width:100%;height:100%;border:1.5px solid rgba(127,168,230,.4);border-radius:8px;background:linear-gradient(160deg,rgba(20,40,72,.55),rgba(10,22,40,.25));display:flex;align-items:center;justify-content:center;">
+          <div style="position:absolute;top:14px;left:14px;width:26px;height:26px;border-top:2px solid #2563eb;border-left:2px solid #2563eb;"></div><div style="position:absolute;top:14px;right:14px;width:26px;height:26px;border-top:2px solid #2563eb;border-right:2px solid #2563eb;"></div><div style="position:absolute;bottom:14px;left:14px;width:26px;height:26px;border-bottom:2px solid #2563eb;border-left:2px solid #2563eb;"></div><div style="position:absolute;bottom:14px;right:14px;width:26px;height:26px;border-bottom:2px solid #2563eb;border-right:2px solid #2563eb;"></div>
+          <div style="position:absolute;top:18px;left:50px;font-family:'SF Mono',monospace;font-size:14px;letter-spacing:.12em;color:#7fa8e6;">NLAT · 모니터링</div>
+          <div style="text-align:center;color:#9fb0c8;"><div style="font-family:'SF Mono',monospace;font-size:14px;letter-spacing:.18em;opacity:.55;">SCREEN&nbsp;RECORDING</div><div style="margin-top:12px;font-size:21px;font-weight:600;color:#cdd8e8;">NLAT 실시간 모니터링 화면</div></div>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;top:790px;width:1150px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+        <div style="display:flex;gap:40px;">
+          <div style="display:flex;align-items:center;gap:14px;"><span style="width:10px;height:10px;border-radius:50%;background:#7cc47a;"></span><span style="font-size:23px;color:#cdd8e8;">A사와 동일한 LMTOOLS</span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><span style="width:10px;height:10px;border-radius:50%;background:#7cc47a;"></span><span style="font-size:23px;color:#cdd8e8;">실시간 사용 모니터링</span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><span style="width:10px;height:10px;border-radius:50%;background:#7cc47a;"></span><span style="font-size:23px;color:#cdd8e8;">초과 접속 내역 확인</span></div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 5 · 클로징 ===================== -->
+    <sc-if value="{{ scene5 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(125% 120% at 70% 20%,#1a3a6b,#10294a 52%,#0a1628 100%);overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:6px;height:100%;background:linear-gradient(#2563eb,rgba(37,99,235,0));"></div>
+      <div style="position:absolute;left:120px;top:200px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#7fa8e6;font-weight:700;margin-bottom:28px;">절감폭은 회사마다 다릅니다</div>
+        <h2 style="font-size:66px;line-height:1.16;font-weight:800;color:#fff;letter-spacing:-.02em;">그래서 견적은,<br>회사에 맞춰 계산합니다</h2>
+        <p style="margin-top:26px;font-size:28px;color:#9fb0c8;">라이선스 수량·구성만 알려주시면 정리해 드립니다.</p>
+      </div>
+      <div style="position:absolute;left:120px;bottom:130px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(127,168,230,.35);border-radius:18px;padding:32px 40px;display:flex;align-items:center;gap:40px;backdrop-filter:blur(6px);">
+          <div><div style="font-size:30px;font-weight:800;color:#fff;">맞춤 견적 · 데모 요청</div><div style="margin-top:10px;font-size:21px;color:#9fb0c8;">우리 회사 기준으로 절감 구조를 계산해 드립니다.</div></div>
+          <div style="border-left:1px solid rgba(255,255,255,.18);padding-left:36px;"><div style="font-size:22px;color:#7fa8e6;font-weight:700;">tally.so/r/44E7GX</div><div style="margin-top:8px;font-size:20px;color:#cdd8e8;">bluetns.co.kr</div></div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== 인디케이터 ===================== -->
+    <div style="position:absolute;left:48px;bottom:40px;z-index:50;display:flex;align-items:center;gap:18px;padding:11px 20px;border-radius:999px;background:rgba(10,22,40,.6);backdrop-filter:blur(8px);">
+      <div style="display:flex;align-items:center;gap:9px;"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="6"><div style="{{ d.st }}"></div></sc-for></div>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,.18);"></div>
+      <div style="font-size:15px;color:#9fb0c8;font-weight:600;letter-spacing:.04em;white-space:nowrap;">EP3 · {{ sceneName }}</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  scenes = [1,5,2,4,3,2];
+  names = ['인트로','EA vs LA','현장·합사','라이선스','관리 도구','클로징'];
+  state = { scene:0, step:0 };
+  stageRef = React.createRef();
+
+  componentDidMount(){
+    window.__deck = this;
+    this.fit();
+    this._fit = ()=>this.fit();
+    window.addEventListener('resize', this._fit);
+    this._key = (e)=>{
+      if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); this.next(); }
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); this.prev(); }
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize', this._fit);
+    window.removeEventListener('keydown', this._key);
+  }
+  fit(){
+    const el = this.stageRef.current; if(!el) return;
+    const s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    el.style.transform = 'translate(-50%,-50%) scale('+s+')';
+  }
+  next(){
+    const {scene,step} = this.state;
+    if(step < this.scenes[scene]) this.setState({step:step+1});
+    else if(scene < this.scenes.length-1) this.setState({scene:scene+1, step:0});
+  }
+  prev(){
+    const {scene,step} = this.state;
+    if(step > 0) this.setState({step:step-1});
+    else if(scene > 0){ const p = scene-1; this.setState({scene:p, step:this.scenes[p]}); }
+  }
+  renderVals(){
+    const {scene,step} = this.state;
+    const v = { stageRef:this.stageRef, advance:()=>this.next() };
+    for(let i=0;i<this.scenes.length;i++) v['scene'+i] = (i===scene);
+    for(let n=1;n<=12;n++){ v['rs'+n] = step>=n?1:0; v['ry'+n] = step>=n?0:18; }
+    v.sceneName = this.names[scene];
+    v.dots = this.scenes.map((k,i)=>{
+      const on=i===scene, past=i<scene;
+      return { st:`width:${on?22:8}px;height:8px;border-radius:999px;transition:all .4s ease;background:${on?'#2563eb':past?'rgba(232,237,244,.7)':'rgba(232,237,244,.22)'}` };
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

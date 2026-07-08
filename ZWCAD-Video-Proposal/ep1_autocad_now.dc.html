@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#05080f;overflow:hidden}
+@keyframes sceneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowP{0%,100%{opacity:.45}50%{opacity:.85}}
+</style>
+</helmet>
+<div style="position:fixed;inset:0;background:#05080f;overflow:hidden;font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;cursor:pointer;" onClick="{{ advance }}">
+  <div ref="{{ stageRef }}" style="position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform:translate(-50%,-50%);transform-origin:center center;">
+
+    <!-- ===================== SCENE 0 · 표지 ===================== -->
+    <sc-if value="{{ scene0 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(125% 120% at 72% 18%,#1a3a6b 0%,#10294a 52%,#0a1628 100%);overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:96px 96px;opacity:.5;"></div>
+      <div style="position:absolute;left:0;top:0;width:6px;height:100%;background:linear-gradient(#2563eb,rgba(37,99,235,0));"></div>
+      <div style="position:absolute;left:120px;top:286px;max-width:1180px;">
+        <div style="transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+          <div style="font-size:20px;letter-spacing:.34em;color:#7fa8e6;font-weight:600;margin-bottom:30px;">ZWCAD EA 단독총판 · BLUETNS</div>
+          <h1 style="font-size:104px;line-height:1.06;font-weight:800;color:#fff;letter-spacing:-.025em;">ZWCAD<br>영상 제안서</h1>
+        </div>
+        <div style="margin-top:40px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+          <p style="font-size:33px;color:#cdd8e8;font-weight:400;line-height:1.5;">받으신 제안서, 처음부터 한 장씩 같이 보겠습니다.</p>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;bottom:150px;display:flex;align-items:center;gap:22px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+        <div style="font-size:32px;font-weight:800;color:#fff;letter-spacing:.06em;">BLUETNS</div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.3);"></div>
+        <div style="font-size:20px;color:#9fb0c8;letter-spacing:.02em;">ZWCAD Enterprise 단독총판</div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 1 · 문제 제기 ===================== -->
+    <sc-if value="{{ scene1 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:#eef1f6;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(80% 70% at 85% 0%,rgba(37,99,235,.05),transparent 60%);"></div>
+      <div style="position:absolute;left:120px;top:120px;max-width:1300px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#2563eb;font-weight:700;margin-bottom:24px;">왜 지금, 이 얘기를 하나</div>
+        <h2 style="font-size:66px;line-height:1.16;font-weight:800;color:#0a1628;letter-spacing:-.02em;">우리 회사 CAD 라이선스,<br>이대로 괜찮으십니까?</h2>
+      </div>
+      <!-- concept timeline -->
+      <div style="position:absolute;left:140px;top:560px;width:1480px;height:200px;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="position:absolute;left:60px;right:60px;top:78px;height:3px;background:linear-gradient(90deg,#94a3b8,#cbd5e1);"></div>
+        <div style="position:absolute;left:30px;top:34px;display:flex;flex-direction:column;align-items:center;width:280px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:#fff;border:3px solid #0a1628;display:flex;align-items:center;justify-content:center;font-size:34px;">🔒</div>
+          <div style="margin-top:18px;font-size:25px;font-weight:700;color:#0a1628;">영구 라이선스</div>
+          <div style="font-size:18px;color:#64748b;margin-top:4px;">한 번 사면 자산</div>
+        </div>
+        <div style="position:absolute;left:560px;top:60px;font-size:40px;color:#94a3b8;">→</div>
+        <div style="position:absolute;left:760px;top:34px;display:flex;flex-direction:column;align-items:center;width:280px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:#fff;border:3px solid #2563eb;display:flex;align-items:center;justify-content:center;font-size:34px;">🔁</div>
+          <div style="margin-top:18px;font-size:25px;font-weight:700;color:#0a1628;">구독 전환</div>
+          <div style="font-size:18px;color:#64748b;margin-top:4px;">매년 다시 결제</div>
+        </div>
+      </div>
+      <div style="position:absolute;left:1280px;top:556px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+        <div style="background:#0a1628;color:#fff;padding:22px 30px;border-radius:14px;box-shadow:0 18px 40px rgba(10,22,40,.25);max-width:300px;">
+          <div style="font-size:16px;letter-spacing:.18em;color:#7fa8e6;font-weight:700;margin-bottom:10px;">RESULT</div>
+          <div style="font-size:30px;font-weight:800;line-height:1.25;">매년 빠지는<br>고정비</div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 2 · 페인포인트 3카드 ===================== -->
+    <sc-if value="{{ scene2 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:#eef1f6;overflow:hidden;">
+      <div style="position:absolute;left:120px;top:110px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#2563eb;font-weight:700;margin-bottom:22px;">현장에서 매번 듣는 이야기</div>
+        <h2 style="font-size:58px;line-height:1.14;font-weight:800;color:#0a1628;letter-spacing:-.02em;">결국, 세 가지로 모입니다</h2>
+      </div>
+      <div style="position:absolute;left:120px;top:360px;display:flex;gap:32px;">
+        <div style="width:468px;background:#fff;border-radius:18px;padding:44px 40px;box-shadow:0 16px 40px rgba(15,31,68,.08);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+          <div style="width:54px;height:54px;border-radius:12px;background:#e8eefc;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;">01</div>
+          <div style="margin-top:30px;font-size:30px;font-weight:800;color:#0a1628;">라이선스 비용 부담</div>
+          <div style="margin-top:16px;font-size:23px;line-height:1.55;color:#475569;">해마다 갱신되는 고정 지출이<br>예산을 계속 압박합니다.</div>
+        </div>
+        <div style="width:468px;background:#fff;border-radius:18px;padding:44px 40px;box-shadow:0 16px 40px rgba(15,31,68,.08);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+          <div style="width:54px;height:54px;border-radius:12px;background:#e8eefc;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;">02</div>
+          <div style="margin-top:30px;font-size:30px;font-weight:800;color:#0a1628;">좌석 제약</div>
+          <div style="margin-top:16px;font-size:23px;line-height:1.55;color:#475569;">필요할 때 못 쓰고,<br>라이선스를 돌려 씁니다.</div>
+        </div>
+        <div style="width:468px;background:#fff;border-radius:18px;padding:44px 40px;box-shadow:0 16px 40px rgba(15,31,68,.08);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateY({{ry4}}px);">
+          <div style="width:54px;height:54px;border-radius:12px;background:#e8eefc;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;">03</div>
+          <div style="margin-top:30px;font-size:30px;font-weight:800;color:#0a1628;">갱신 압박</div>
+          <div style="margin-top:16px;font-size:23px;line-height:1.55;color:#475569;">버전·계약 갱신마다<br>같은 협의가 반복됩니다.</div>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;top:792px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs5}};transform:translateY({{ry5}}px);">
+        <div style="display:inline-flex;align-items:center;gap:18px;background:#0a1628;color:#fff;padding:24px 38px;border-radius:14px;">
+          <span style="font-size:25px;color:#7fa8e6;font-weight:700;">결론</span>
+          <span style="font-size:30px;font-weight:800;letter-spacing:-.01em;">CAD = 고정비 + 생산성 병목</span>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 3 · 솔루션 전환 ===================== -->
+    <sc-if value="{{ scene3 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(110% 120% at 30% 40%,#10294a,#0a1628 70%);overflow:hidden;">
+      <div style="position:absolute;left:120px;top:330px;max-width:1300px;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:20px;letter-spacing:.3em;color:#7fa8e6;font-weight:700;margin-bottom:30px;">SOLUTION</div>
+        <h2 style="font-size:84px;line-height:1.18;font-weight:800;color:#fff;letter-spacing:-.025em;">도면은 그대로.<br><span style="color:#5b8def;">비용 구조</span>만 바꿉니다.</h2>
+      </div>
+      <div style="position:absolute;left:124px;top:678px;display:flex;align-items:center;gap:22px;transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="position:relative;">
+          <div style="position:absolute;inset:-18px;background:radial-gradient(circle,rgba(37,99,235,.55),transparent 70%);filter:blur(14px);animation:glowP 3s ease-in-out infinite;"></div>
+          <div style="position:relative;font-size:60px;font-weight:800;color:#fff;letter-spacing:.02em;">ZW<span style="color:#7cc47a;">CAD</span></div>
+        </div>
+        <div style="font-size:24px;color:#9fb0c8;border-left:1px solid rgba(255,255,255,.2);padding-left:22px;line-height:1.5;">같은 .dwg · 같은 명령어<br>익숙한 그 환경 그대로</div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 4 · 6핵심 그리드 ===================== -->
+    <sc-if value="{{ scene4 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f2744,#0a1628 60%);overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:96px 96px;"></div>
+      <div style="position:absolute;left:120px;top:88px;max-width:1160px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#7fa8e6;font-weight:700;margin-bottom:18px;">WHY ZWCAD · 6</div>
+        <h2 style="font-size:50px;line-height:1.12;font-weight:800;color:#fff;letter-spacing:-.02em;">바꾸는 건 비용 구조, 그대로 두는 건 일하는 방식</h2>
+      </div>
+      <div style="position:absolute;left:120px;top:250px;width:1180px;display:grid;grid-template-columns:1fr 1fr;gap:22px;">
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:30px 34px;display:flex;gap:24px;align-items:flex-start;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+          <div style="font-size:34px;font-weight:800;color:#3b6fd4;line-height:1;min-width:48px;">01</div>
+          <div><div style="font-size:27px;font-weight:800;color:#fff;">완벽한 호환성</div><div style="margin-top:8px;font-size:21px;color:#9fb0c8;line-height:1.45;">.dwg · .dxf 포맷 그대로 열고 저장</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:30px 34px;display:flex;gap:24px;align-items:flex-start;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+          <div style="font-size:34px;font-weight:800;color:#3b6fd4;line-height:1;min-width:48px;">02</div>
+          <div><div style="font-size:27px;font-weight:800;color:#fff;">명령어 · UI 동일</div><div style="margin-top:8px;font-size:21px;color:#9fb0c8;line-height:1.45;">쓰던 단축키 그대로, 커스터마이징 가능</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:30px 34px;display:flex;gap:24px;align-items:flex-start;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateY({{ry4}}px);">
+          <div style="font-size:34px;font-weight:800;color:#3b6fd4;line-height:1;min-width:48px;">03</div>
+          <div><div style="font-size:27px;font-weight:800;color:#fff;">Lisp 그대로</div><div style="margin-top:8px;font-size:21px;color:#9fb0c8;line-height:1.45;">기존 리습 자동화 그대로 적용</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:30px 34px;display:flex;gap:24px;align-items:flex-start;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);opacity:{{rs5}};transform:translateY({{ry5}}px);">
+          <div style="font-size:34px;font-weight:800;color:#3b6fd4;line-height:1;min-width:48px;">04</div>
+          <div><div style="font-size:27px;font-weight:800;color:#fff;">영구 버전</div><div style="margin-top:8px;font-size:21px;color:#9fb0c8;line-height:1.45;">한 번 구매로 영구 소유</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:30px 34px;display:flex;gap:24px;align-items:flex-start;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);opacity:{{rs6}};transform:translateY({{ry6}}px);">
+          <div style="font-size:34px;font-weight:800;color:#3b6fd4;line-height:1;min-width:48px;">05</div>
+          <div><div style="font-size:27px;font-weight:800;color:#fff;">네트워크 라이선스</div><div style="margin-top:8px;font-size:21px;color:#9fb0c8;line-height:1.45;">설치 무제한 · 동시접속 수량만 구매</div></div>
+        </div>
+        <div style="background:rgba(37,99,235,.14);border:1px solid rgba(91,141,239,.4);border-radius:16px;padding:30px 34px;display:flex;gap:24px;align-items:flex-start;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);opacity:{{rs7}};transform:translateY({{ry7}}px);">
+          <div style="font-size:34px;font-weight:800;color:#7cc47a;line-height:1;min-width:48px;">06</div>
+          <div><div style="font-size:27px;font-weight:800;color:#fff;">합리적 비용 구조</div><div style="margin-top:8px;font-size:21px;color:#cdd8e8;line-height:1.45;">매년 빠지던 고정비를 덜어냅니다</div></div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 5 · 클로징 ===================== -->
+    <sc-if value="{{ scene5 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(125% 120% at 70% 20%,#1a3a6b,#10294a 52%,#0a1628 100%);overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:6px;height:100%;background:linear-gradient(#2563eb,rgba(37,99,235,0));"></div>
+      <div style="position:absolute;left:120px;top:150px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#7fa8e6;font-weight:700;margin-bottom:34px;">다음 편에서 다룰 질문</div>
+        <div style="display:flex;flex-direction:column;gap:26px;">
+          <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:26px;font-weight:800;color:#3b6fd4;width:52px;">02</span><span style="font-size:42px;font-weight:700;color:#fff;">정말 똑같이 쓸 수 있나</span></div>
+          <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:26px;font-weight:800;color:#3b6fd4;width:52px;">03</span><span style="font-size:42px;font-weight:700;color:#fff;">얼마나, 어떻게 아끼나</span></div>
+          <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:26px;font-weight:800;color:#3b6fd4;width:52px;">04+</span><span style="font-size:42px;font-weight:700;color:#fff;">도입하고 나면 무엇이 남나</span></div>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;bottom:130px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(127,168,230,.35);border-radius:18px;padding:32px 40px;display:flex;align-items:center;gap:40px;backdrop-filter:blur(6px);">
+          <div>
+            <div style="font-size:30px;font-weight:800;color:#fff;">전체 제안서 · 맞춤 견적 받기</div>
+            <div style="margin-top:10px;font-size:21px;color:#9fb0c8;">회사 환경에 맞는 도입안을 직접 정리해 드립니다.</div>
+          </div>
+          <div style="border-left:1px solid rgba(255,255,255,.18);padding-left:36px;">
+            <div style="font-size:22px;color:#7fa8e6;font-weight:700;">tally.so/r/44E7GX</div>
+            <div style="margin-top:8px;font-size:20px;color:#cdd8e8;">bluetns.co.kr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== 진행 인디케이터 ===================== -->
+    <div style="position:absolute;left:48px;bottom:40px;z-index:50;display:flex;align-items:center;gap:18px;padding:11px 20px;border-radius:999px;background:rgba(10,22,40,.6);backdrop-filter:blur(8px);">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="6"><div style="{{ d.st }}"></div></sc-for>
+      </div>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,.18);"></div>
+      <div style="font-size:15px;color:#9fb0c8;font-weight:600;letter-spacing:.04em;white-space:nowrap;">EP1 · {{ sceneName }}</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  scenes = [3,3,5,2,7,2];
+  names = ['표지','문제 제기','페인포인트','솔루션','6핵심','클로징'];
+  state = { scene:0, step:0 };
+  stageRef = React.createRef();
+
+  componentDidMount(){
+    window.__deck = this;
+    this.fit();
+    this._fit = ()=>this.fit();
+    window.addEventListener('resize', this._fit);
+    this._key = (e)=>{
+      if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); this.next(); }
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); this.prev(); }
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize', this._fit);
+    window.removeEventListener('keydown', this._key);
+  }
+  fit(){
+    const el = this.stageRef.current; if(!el) return;
+    const s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    el.style.transform = 'translate(-50%,-50%) scale('+s+')';
+  }
+  next(){
+    const {scene,step} = this.state;
+    if(step < this.scenes[scene]) this.setState({step:step+1});
+    else if(scene < this.scenes.length-1) this.setState({scene:scene+1, step:0});
+  }
+  prev(){
+    const {scene,step} = this.state;
+    if(step > 0) this.setState({step:step-1});
+    else if(scene > 0){ const p = scene-1; this.setState({scene:p, step:this.scenes[p]}); }
+  }
+  renderVals(){
+    const {scene,step} = this.state;
+    const v = { stageRef:this.stageRef, advance:()=>this.next() };
+    for(let i=0;i<this.scenes.length;i++) v['scene'+i] = (i===scene);
+    for(let n=1;n<=12;n++){ v['rs'+n] = step>=n?1:0; v['ry'+n] = step>=n?0:18; }
+    v.sceneName = this.names[scene];
+    v.dots = this.scenes.map((k,i)=>{
+      const on=i===scene, past=i<scene;
+      return { st:`width:${on?22:8}px;height:8px;border-radius:999px;transition:all .4s ease;background:${on?'#2563eb':past?'rgba(232,237,244,.7)':'rgba(232,237,244,.22)'}` };
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

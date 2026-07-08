@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#0a0d12}
+a{text-decoration:none}
+.epcard{transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s ease,background .35s ease}
+.epcard:hover{transform:translateY(-6px);border-color:rgba(91,141,239,.6)!important;background:rgba(37,99,235,.08)!important}
+.epcard:hover .epgo{color:#9fc0ff!important;transform:translateX(4px)}
+.epgo{transition:transform .35s ease,color .35s ease}
+</style>
+</helmet>
+<div style="min-height:100vh;background:radial-gradient(130% 100% at 80% 0%,#16202e,#0a0d12 60%);font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;padding:80px 80px 100px;">
+  <div style="max-width:1500px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
+      <div>
+        <div style="font-size:17px;letter-spacing:.32em;color:#7fa8e6;font-weight:700;margin-bottom:20px;">ZWCAD 영상 제안서 · 배경 슬라이드</div>
+        <h1 style="font-size:62px;line-height:1.1;font-weight:800;color:#fff;letter-spacing:-.025em;">6편 시리즈</h1>
+        <p style="margin-top:20px;font-size:21px;color:#9fb0c8;line-height:1.5;">각 편은 1920×1080 풀스크린. <span style="color:#cdd8e8;font-weight:600;">키보드 → / 클릭</span>으로 한 스텝씩 진행합니다.<br>우하단 영역은 진행자 버블 합성을 위해 비워 두었습니다.</p>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:30px;font-weight:800;color:#fff;letter-spacing:.06em;">BLUETNS</div>
+        <div style="margin-top:6px;font-size:16px;color:#7e91ad;">ZWCAD EA 단독총판</div>
+      </div>
+    </div>
+
+    <div style="margin-top:64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;">
+      <a href="ep1_autocad_now.dc.html" class="epcard" style="display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 36px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:18px;font-weight:800;color:#3b6fd4;letter-spacing:.1em;">EP 01</div><div class="epgo" style="font-size:22px;color:#5e7392;">→</div></div>
+        <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff;line-height:1.25;">AutoCAD,<br>지금 이대로 괜찮으십니까</div>
+        <div style="margin-top:18px;font-size:19px;color:#9fb0c8;line-height:1.5;">문제 제기부터 ZWCAD 6핵심까지</div>
+      </a>
+      <a href="ep2_compatibility.dc.html" class="epcard" style="display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 36px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:18px;font-weight:800;color:#3b6fd4;letter-spacing:.1em;">EP 02</div><div class="epgo" style="font-size:22px;color:#5e7392;">→</div></div>
+        <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff;line-height:1.25;">정말 똑같이<br>쓸 수 있나</div>
+        <div style="margin-top:18px;font-size:19px;color:#9fb0c8;line-height:1.5;">UI·CUI·옵션·PLOT 시연 비교</div>
+      </a>
+      <a href="ep3_cost_license.dc.html" class="epcard" style="display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 36px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:18px;font-weight:800;color:#3b6fd4;letter-spacing:.1em;">EP 03</div><div class="epgo" style="font-size:22px;color:#5e7392;">→</div></div>
+        <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff;line-height:1.25;">얼마나,<br>어떻게 아끼나</div>
+        <div style="margin-top:18px;font-size:19px;color:#9fb0c8;line-height:1.5;">EA vs LA · 라이선스 운영</div>
+      </a>
+      <a href="ep4_zdream_3rdparty.dc.html" class="epcard" style="display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 36px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:18px;font-weight:800;color:#3b6fd4;letter-spacing:.1em;">EP 04</div><div class="epgo" style="font-size:22px;color:#5e7392;">→</div></div>
+        <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff;line-height:1.25;">ZWCAD만<br>사는 게 아닙니다</div>
+        <div style="margin-top:18px;font-size:19px;color:#9fb0c8;line-height:1.5;">3rd-party · ZDREAM 140기능</div>
+      </a>
+      <a href="ep5_support.dc.html" class="epcard" style="display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 36px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:18px;font-weight:800;color:#0d9488;letter-spacing:.1em;">EP 05</div><div class="epgo" style="font-size:22px;color:#5e7392;">→</div></div>
+        <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff;line-height:1.25;">도입하고<br>끝이 아닙니다</div>
+        <div style="margin-top:18px;font-size:19px;color:#9fb0c8;line-height:1.5;">기술지원 A to Z · 전담팀</div>
+      </a>
+      <a href="ep6_why_bluetns.dc.html" class="epcard" style="display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 36px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><div style="font-size:18px;font-weight:800;color:#3b6fd4;letter-spacing:.1em;">EP 06</div><div class="epgo" style="font-size:22px;color:#5e7392;">→</div></div>
+        <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff;line-height:1.25;">그래서, 왜<br>블루티엔에스인가</div>
+        <div style="margin-top:18px;font-size:19px;color:#9fb0c8;line-height:1.5;">연혁 · 고객사 · 클로징</div>
+      </a>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

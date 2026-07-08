@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:78px;}
+  body{margin:0; font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif; color:#333333; -webkit-font-smoothing:antialiased; background:#ffffff; word-break:keep-all; overflow-wrap:break-word;}
+  a{-webkit-tap-highlight-color:transparent;}
+  h1,h2,h3{text-wrap:balance;}
+  p,li{text-wrap:pretty;}
+  @media print {
+    @page { size: A4 landscape; margin: 9mm; }
+    html { scroll-padding-top: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    [data-noprint] { display: none !important; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; animation: none !important; }
+    /* 각 섹션을 새 페이지에서 시작 */
+    section { padding-top: 26px !important; padding-bottom: 26px !important; break-before: page; -webkit-column-break-before: page; }
+    section#top { break-before: avoid; }
+    /* 카드·이미지·표·항목이 페이지 경계에서 잘리지 않도록 묶음 */
+    div[style*="border-radius"], img, svg, table, tr, li, dc-import { break-inside: avoid; -webkit-region-break-inside: avoid; page-break-inside: avoid; }
+    h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  }
+  @keyframes scReveal { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+
+<div style="width:100%; overflow-x:hidden;">
+
+  <!-- ============ HEADER ============ -->
+  <header data-noprint style="position:fixed; top:0; left:0; right:0; z-index:50; height:64px; background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid #e7ecf5;">
+    <div style="max-width:1180px; margin:0 auto; height:100%; padding:0 24px; display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <span style="display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:19px; color:#243E66; letter-spacing:-.01em;"><span style="display:inline-block; width:10px; height:18px; background:linear-gradient(180deg,#3A66B4,#2C508E); border-radius:2px;"></span>ZWCAD 365</span>
+        <span style="font-size:11px; font-weight:600; color:#8a96ab; border-left:1px solid #d7deec; padding-left:10px;">by BLUETNS</span>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:14px;">
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex; align-items:center; gap:22px;">
+          <sc-for list="{{ nav }}" as="item" hint-placeholder-count="8">
+            <a href="#{{ item.id }}" style="text-decoration:none; color:#41506a; font-size:15px; font-weight:600; white-space:nowrap;" style-hover="color:#2563EB;">{{ item.label }}</a>
+          </sc-for>
+          <a href="{{ ctaHref }}" onClick="{{ openConsult }}" style="display:inline-flex; align-items:center; gap:7px; background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:14px; padding:10px 18px; border-radius:9px; box-shadow:0 6px 16px rgba(37,99,235,.26);" style-hover="background:#1d4fd0;">무료 상담 신청</a>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}">
+        <button onClick="{{ toggleMenu }}" aria-label="menu" style="display:inline-flex; flex-direction:column; gap:5px; background:none; border:none; padding:8px; cursor:pointer;">
+          <span style="display:block; width:24px; height:2px; background:#243E66; border-radius:2px;"></span>
+          <span style="display:block; width:24px; height:2px; background:#243E66; border-radius:2px;"></span>
+          <span style="display:block; width:24px; height:2px; background:#243E66; border-radius:2px;"></span>
+        </button>
+      </sc-if>
+      <button onClick="{{ savePdf }}" title="PDF로 저장 (가로 방향)" style="display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 14px; border-radius:9px; border:1px solid #e0e6f1; background:#fff; color:#41506a; font-weight:700; font-size:13px; cursor:pointer; flex:none; white-space:nowrap;" style-hover="background:#f3f6fc; color:#2563EB;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        PDF
+      </button>
+      <button onClick="{{ openSettings }}" aria-label="설정" title="관리자 설정" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:9px; border:1px solid #e0e6f1; background:#fff; color:#52617d; cursor:pointer; flex:none;" style-hover="background:#f3f6fc; color:#2563EB;">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      </button>
+      </div>
+
+    <sc-if value="{{ menuOpen }}">
+      <div style="position:absolute; top:64px; left:0; right:0; background:#fff; border-bottom:1px solid #e7ecf5; box-shadow:0 16px 30px rgba(36,62,102,.12); padding:14px 24px 20px;">
+        <div style="display:flex; flex-direction:column;">
+          <sc-for list="{{ nav }}" as="item" hint-placeholder-count="8">
+            <a href="#{{ item.id }}" onClick="{{ closeMenu }}" style="text-decoration:none; color:#33415a; font-size:16px; font-weight:600; padding:13px 4px; border-bottom:1px solid #f0f3f9;">{{ item.label }}</a>
+          </sc-for>
+          <a href="{{ ctaHref }}" onClick="{{ openConsult }}" onClick="{{ closeMenu }}" style="margin-top:14px; text-align:center; background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:15px; padding:13px 18px; border-radius:10px;">무료 상담 신청</a>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" data-screen-label="HERO" style="position:relative; padding-top:64px;">
+    <sc-if value="{{ heroDark }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative; background:#0A1628; overflow:hidden;">
+        <div style="position:absolute; inset:0; background-image:url('img/bg_8.jpeg'); background-size:cover; background-position:center; opacity:.4;"></div>
+        <div style="position:absolute; inset:0; background:radial-gradient(1100px 560px at 82% -12%, rgba(58,102,180,.42), rgba(10,22,40,0) 60%), linear-gradient(90deg,#0A1628 6%, rgba(10,22,40,.6) 70%, rgba(10,22,40,.35) 100%);"></div>
+        <div style="position:relative; max-width:1180px; margin:0 auto; padding:clamp(70px,12vw,140px) 24px clamp(64px,10vw,120px); display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:48px; align-items:center;">
+          <div data-reveal>
+            <img src="img/bluetns_white_crop.png" alt="(주)블루티엔에스 BLUETNS" style="height:34px; width:auto; display:block; margin-bottom:24px;">
+            <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#c7d6f2; font-size:13px; font-weight:600; padding:7px 14px; border-radius:99px;">클라우드 기반 통합 협업 CAD 플랫폼</span>
+            <h1 style="margin:22px 0 0; font-size:clamp(44px,7vw,80px); line-height:1.02; font-weight:800; color:#fff; letter-spacing:-.02em;">ZWCAD 365</h1>
+            <p style="margin:20px 0 0; font-size:clamp(18px,2.4vw,24px); line-height:1.5; color:#b9c6dd; font-weight:500; max-width:30ch;">클라우드 서버에서 도면 관리부터 편집까지, 언제 어디서나.</p>
+            <div style="margin-top:36px; display:flex; flex-wrap:wrap; gap:14px;">
+              <a href="{{ ctaHref }}" onClick="{{ openConsult }}" style="display:inline-flex; align-items:center; gap:8px; background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:16px; padding:15px 28px; border-radius:11px; box-shadow:0 12px 28px rgba(37,99,235,.4);" style-hover="background:#1d4fd0;">무료 상담 신청 →</a>
+              <a href="#platform" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.2); color:#fff; text-decoration:none; font-weight:600; font-size:16px; padding:15px 26px; border-radius:11px;" style-hover="background:rgba(255,255,255,.14);">제품 자세히 보기</a>
+            </div>
+            <p style="margin-top:30px; font-size:13px; color:#7e8eaa; letter-spacing:.02em;">ZWSOFT ZWCAD 365 · 국내 공급 <strong style="color:#aebfdb; font-weight:700;">BLUETNS (ZWCAD EA 단독총판)</strong></p>
+          </div>
+          <div data-reveal style="position:relative; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.16); box-shadow:0 30px 70px rgba(0,0,0,.5); aspect-ratio:16/10; background:#0e1b30;"><img src="pages/p10.jpg" alt="ZWCAD 365" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 24%;">
+            <span style="font-family:monospace; font-size:13px; color:#9fb1d0; background:rgba(10,22,40,.6); padding:8px 14px; border-radius:8px; border:1px solid rgba(255,255,255,.14);">p1 · HERO 비주얼 / 메인 UI 캡처</span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ heroGradient }}">
+      <div style="position:relative; background:linear-gradient(135deg,#2C508E 0%,#3A66B4 100%); overflow:hidden;">
+        <div style="position:relative; max-width:1180px; margin:0 auto; padding:clamp(70px,12vw,140px) 24px clamp(64px,10vw,120px); text-align:center;">
+          <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.14); color:#eaf1ff; font-size:13px; font-weight:600; padding:7px 14px; border-radius:99px;">클라우드 기반 통합 협업 CAD 플랫폼</span>
+          <h1 style="margin:22px auto 0; font-size:clamp(44px,7vw,80px); line-height:1.02; font-weight:800; color:#fff; letter-spacing:-.02em;">ZWCAD 365</h1>
+          <p style="margin:20px auto 0; font-size:clamp(18px,2.4vw,24px); line-height:1.5; color:#dbe6fb; font-weight:500; max-width:34ch;">클라우드 서버에서 도면 관리부터 편집까지, 언제 어디서나.</p>
+          <div style="margin-top:36px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
+            <a href="{{ ctaHref }}" onClick="{{ openConsult }}" style="display:inline-flex; align-items:center; gap:8px; background:#fff; color:#2C508E; text-decoration:none; font-weight:700; font-size:16px; padding:15px 28px; border-radius:11px; box-shadow:0 12px 28px rgba(0,0,0,.18);">무료 상담 신청 →</a>
+            <a href="#platform" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.4); color:#fff; text-decoration:none; font-weight:600; font-size:16px; padding:15px 26px; border-radius:11px;">제품 자세히 보기</a>
+          </div>
+          <p style="margin-top:30px; font-size:13px; color:#c5d3ee;">ZWSOFT ZWCAD 365 · 국내 공급 <strong style="color:#fff; font-weight:700;">BLUETNS (ZWCAD EA 단독총판)</strong></p>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+
+  <!-- ============ 1. PLATFORM ============ -->
+  <section id="platform" data-screen-label="플랫폼 소개" style="background:#fff; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px;">
+      <div data-reveal style="margin-bottom:44px; max-width:760px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 통합 협업 플랫폼</span></div>
+        <h2 style="margin:0; font-size:clamp(28px,3.8vw,42px); line-height:1.22; font-weight:800; color:#243E66; letter-spacing:-.01em;">분야를 넘나드는 엔지니어 협업을<br>하나의 클라우드 CAD에서</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:40px; align-items:start;">
+        <div data-reveal style="display:flex; flex-direction:column; gap:20px;">
+          <p style="margin:0; font-size:17px; line-height:1.75; color:#444;">건축·건설·제조 등 다양한 분야의 엔지니어 간 협업을 위한 <strong style="color:#243E66;">클라우드 기반 CAD 시스템</strong>입니다.</p>
+          <p style="margin:0; font-size:16px; line-height:1.75; color:#555;">웹 형태의 스마트 기기에서 언제 어디서든 DWG 파일에 접근해 간단한 편집과 마크업으로 각 상황에 실시간 대응하고, 업데이트하여 데이터를 리비전할 수 있습니다.</p>
+          <p style="margin:0; font-size:16px; line-height:1.75; color:#555;">설계자는 로컬에 설치된 CAD 제품을 서버와 연동해 업로드된 도면을 세부적으로 수정하고, 히스토리를 관리하며 온라인 협업 워크플로우를 구성합니다.</p>
+        </div>
+        <div data-reveal style="border-radius:16px; border:1px solid #dbe4f3; background:#fff; padding:30px 26px; box-shadow:0 12px 32px rgba(36,62,102,.08);">
+          <img src="img/p3_diag.png" alt="ZWCAD 365 구성" loading="lazy" style="width:100%; height:auto; display:block;">
+        </div>
+      </div>
+
+      <!-- 기대효과 -->
+      <div data-reveal style="margin-top:64px;">
+        <h3 style="margin:0 0 22px; font-size:20px; font-weight:700; color:#243E66;">도입 기대효과</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px;">
+          <sc-for list="{{ effects }}" as="item" hint-placeholder-count="5">
+            <div style="background:#fff; border:1px solid #e4eaf3; border-radius:14px; padding:24px 22px;">
+              <div style="font-family:monospace; font-size:14px; font-weight:700; color:#2563EB; opacity:.8;">{{ item.n }}</div>
+              <div style="margin-top:12px; font-size:18px; font-weight:700; color:#243E66;">{{ item.title }}</div>
+              <div style="margin-top:8px; font-size:14px; line-height:1.6; color:#667;">{{ item.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- Public vs Private -->
+      <div data-reveal style="margin-top:64px;">
+        <h3 style="margin:0 0 8px; font-size:20px; font-weight:700; color:#243E66;">서버 구성 — Public vs Private</h3>
+        <p style="margin:0 0 24px; font-size:15px; line-height:1.7; color:#667; max-width:80ch;">ZWCAD 365 서버는 Public / Private 두 형태로 제공되며, 기업의 보안 정책·운영 환경·관리 방식에 따라 최적 구조를 선택해 구축할 수 있습니다. 두 환경 모두 Web 기반으로 PC·모바일·태블릿에서 협업 플랫폼을 구축합니다.</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px;">
+          <div style="border:1px solid #dbe4f3; border-radius:16px; overflow:hidden; background:#fff;">
+            <div style="background:#eef2fb; padding:20px 24px; border-bottom:1px solid #dbe4f3;"><div style="font-size:13px; font-weight:700; color:#2563EB; letter-spacing:.04em;">PUBLIC SERVER</div><div style="margin-top:4px; font-size:18px; font-weight:700; color:#243E66;">공급사 클라우드 인프라</div></div>
+            <ul style="margin:0; padding:22px 24px 24px 20px; display:flex; flex-direction:column; gap:11px; list-style:none;">
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">인프라</strong> · ZWSOFT 클라우드 센터</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">접속</strong> · 인터넷 접속</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">보안</strong> · 클라우드 보안 정책 의존</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">구축 비용</strong> · 낮음</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">옵션</strong> · ZWSOFT 서버 / KT IDC Server(기본)</li>
+            </ul>
+          </div>
+          <div style="border:1px solid #2563EB; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 12px 30px rgba(37,99,235,.12);">
+            <div style="background:linear-gradient(135deg,#2C508E,#3A66B4); padding:20px 24px;"><div style="font-size:13px; font-weight:700; color:#bcd0f5; letter-spacing:.04em;">PRIVATE SERVER</div><div style="margin-top:4px; font-size:18px; font-weight:700; color:#fff;">기업 자체 데이터센터</div></div>
+            <ul style="margin:0; padding:22px 24px 24px 20px; display:flex; flex-direction:column; gap:11px; list-style:none;">
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">인프라</strong> · 기업 자체 IDC / Cloud</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">접속</strong> · 내부망 · VPN</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">보안</strong> · 완전한 자체 통제</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">구축 비용</strong> · 높음</li>
+              <li style="font-size:15px; color:#445; line-height:1.5;"><strong style="color:#243E66;">옵션</strong> · 자체 IDC 또는 Cloud 서버</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. 통합 관리 ============ -->
+  <section id="mgmt" data-screen-label="통합 관리·협업" style="background:#EEF2FB; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px;">
+      <div data-reveal style="margin-bottom:44px; max-width:760px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 (Web) : 통합 관리</span></div>
+        <h2 style="margin:0; font-size:clamp(28px,3.8vw,42px); line-height:1.22; font-weight:800; color:#243E66; letter-spacing:-.01em;">백그라운드에서 한눈에,<br>운영·보안·협업을 통합 관리</h2>
+        <p style="margin:18px 0 0; font-size:16px; line-height:1.75; color:#556;">Web 플랫폼의 백그라운드 관리로 제품 이력·라이선스 현황을 한눈에 확인하고, 전체 사용량을 실시간 모니터링하며, 모든 작업 히스토리까지 관리해 운영 효율성·보안성·업무 투명성을 높입니다.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;">
+        <sc-for list="{{ mgmtCards }}" as="item" hint-placeholder-count="4">
+          <div style="background:#fff; border:1px solid #e1e8f5; border-radius:16px; padding:28px 24px; box-shadow:0 8px 22px rgba(36,62,102,.05);">
+            <div style="width:38px; height:38px; border-radius:10px; background:#eef2fb; display:flex; align-items:center; justify-content:center; font-family:monospace; font-weight:700; color:#2563EB; font-size:15px;">{{ item.n }}</div>
+            <div style="margin-top:16px; font-size:17px; font-weight:700; color:#243E66;">{{ item.title }}</div>
+            <div style="margin-top:9px; font-size:14px; line-height:1.65; color:#667;">{{ item.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div data-reveal style="margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; align-items:center;">
+        <div style="position:relative; border-radius:14px; overflow:hidden; border:1px solid #d5deef; box-shadow:0 14px 36px rgba(36,62,102,.12); aspect-ratio:16/9; background:#0e1b30;">
+          <img src="pages/p7.jpg" alt="협업 관리 플랫폼" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;">
+        </div>
+        <div>
+          <h3 style="margin:0 0 10px; font-size:20px; font-weight:700; color:#243E66;">협업 관리 플랫폼</h3>
+          <p style="margin:0; font-size:16px; line-height:1.75; color:#556;">로컬–클라우드 연동, 웹 기반 도면 업로드·관리, 프로젝트 생성·관리, 권한 기반 안정성, 실시간 공유까지 하나의 워크플로우로 묶습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. 기본 화면 ============ -->
+  <section id="screen" data-screen-label="기본 화면" style="background:#fff; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:44px; align-items:center;">
+        <div data-reveal>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 기본 화면</span></div>
+          <h2 style="margin:0; font-size:clamp(28px,3.8vw,42px); line-height:1.22; font-weight:800; color:#243E66; letter-spacing:-.01em;">익숙하고 직관적인<br>기본 작업 화면</h2>
+          <p style="margin:18px 0 0; font-size:16px; line-height:1.75; color:#556;">처음 접속해도 한눈에 들어오는 기본 화면 UI를 제공합니다.</p>
+          <div style="margin-top:20px; padding:18px 20px; background:#eef2fb; border-radius:12px; border-left:3px solid #2563EB;">
+            <div style="font-size:15px; font-weight:700; color:#243E66;">최근 작업 탭</div>
+            <div style="margin-top:5px; font-size:14px; line-height:1.6; color:#667;">최근에 연 도면들을 한곳에서 빠르게 확인할 수 있는 공간입니다.</div>
+          </div>
+        </div>
+        <div data-reveal style="position:relative; border-radius:14px; overflow:hidden; border:1px solid #d5deef; box-shadow:0 14px 36px rgba(36,62,102,.12); aspect-ratio:16/10; background:#0e1b30;">
+          <img src="pages/p10.jpg" alt="ZWCAD 365 기본 화면" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. 프로젝트 ============ -->
+  <section id="project" data-screen-label="프로젝트 생성과 관리" style="background:#EEF2FB; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px;">
+      <div data-reveal style="margin-bottom:36px; max-width:780px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 프로젝트 생성과 관리</span></div>
+        <h2 style="margin:0; font-size:clamp(28px,3.8vw,42px); line-height:1.22; font-weight:800; color:#243E66; letter-spacing:-.01em;">프로젝트·권한·파일을<br>한 흐름으로 관리</h2>
+        <p style="margin:18px 0 0; font-size:16px; line-height:1.75; color:#556;">프로젝트 생성부터 역할·멤버·파일·공유·변환까지, 협업에 필요한 전 과정을 하나의 플랫폼에서 다룹니다.</p>
+      </div>
+
+      <div data-reveal style="margin-bottom:32px; position:relative; border-radius:16px; overflow:hidden; border:1px solid #d5deef; box-shadow:0 14px 36px rgba(36,62,102,.12); aspect-ratio:21/8; background:#0e1b30;"><img src="pages/p13.jpg" alt="프로젝트 생성 · 관리" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 26%;">
+        <span style="font-family:monospace; font-size:13px; color:#5d6f8e; background:rgba(255,255,255,.85); padding:8px 14px; border-radius:8px; border:1px solid #d5deef;">p12~p28 · 프로젝트 / 멤버 / 파일 관리 UI 캡처</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px;">
+        <sc-for list="{{ projectCards }}" as="item" hint-placeholder-count="11">
+          <div style="background:#fff; border:1px solid #e1e8f5; border-radius:14px; padding:24px 22px;">
+            <div style="font-size:16px; font-weight:700; color:#243E66; display:flex; align-items:center; gap:9px;"><span style="width:7px; height:7px; border-radius:99px; background:#2563EB; flex:none;"></span>{{ item.title }}</div>
+            <div style="margin-top:10px; padding-left:16px; font-size:14px; line-height:1.65; color:#667;">{{ item.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. 라이브러리 ============ -->
+  <section id="library" data-screen-label="요소 라이브러리" style="background:#fff; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px;">
+      <div data-reveal style="margin-bottom:36px; max-width:780px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 요소 라이브러리</span></div>
+        <h2 style="margin:0; font-size:clamp(28px,3.8vw,42px); line-height:1.22; font-weight:800; color:#243E66; letter-spacing:-.01em;">재사용 가능한 도면 요소를<br>라이브러리로 자산화</h2>
+        <p style="margin:18px 0 0; font-size:16px; line-height:1.75; color:#556;">선종류·도면층·블록·해치·문자·치수 스타일 등 도면 요소를 추출해 라이브러리로 저장하고, 그룹·권한으로 체계적으로 관리합니다.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:32px; align-items:start;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px;">
+          <sc-for list="{{ libraryCards }}" as="item" hint-placeholder-count="7">
+            <div style="background:#fff; border:1px solid #e4eaf3; border-radius:14px; padding:22px 20px;">
+              <div style="font-size:16px; font-weight:700; color:#243E66;">{{ item.title }}</div>
+              <div style="margin-top:9px; font-size:14px; line-height:1.65; color:#667;">{{ item.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div data-reveal style="position:relative; border-radius:14px; overflow:hidden; border:1px solid #d5deef; box-shadow:0 14px 36px rgba(36,62,102,.12); min-height:320px; background:#0e1b30;">
+          <img src="pages/p30.jpg" alt="요소 라이브러리" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 24%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 & 7. 프로세스 / 도면보기 ============ -->
+  <section id="process" data-screen-label="프로세스·도면보기" style="background:#EEF2FB; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px;">
+      <div data-reveal style="background:#fff; border:1px solid #e1e8f5; border-radius:18px; padding:32px; box-shadow:0 8px 22px rgba(36,62,102,.05);">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 프로세스</span></div>
+        <h2 style="margin:0; font-size:clamp(24px,3vw,32px); line-height:1.25; font-weight:800; color:#243E66;">도면 결재 프로세스</h2>
+        <p style="margin:14px 0 22px; font-size:15px; line-height:1.7; color:#667;">도면의 검토·승인 흐름을 플랫폼 안에서 체계적으로 진행합니다.</p>
+        <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid #d5deef; aspect-ratio:16/9; background:#0e1b30;">
+          <img src="pages/p39.jpg" alt="도면 결재 프로세스" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 28%;">
+        </div>
+      </div>
+      <div data-reveal id="viewer" data-screen-label="도면 보기" style="background:#fff; border:1px solid #e1e8f5; border-radius:18px; padding:32px; box-shadow:0 8px 22px rgba(36,62,102,.05); scroll-margin-top:90px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 도면 보기</span></div>
+        <h2 style="margin:0; font-size:clamp(24px,3vw,32px); line-height:1.25; font-weight:800; color:#243E66;">도면 보기 옵션 설정</h2>
+        <p style="margin:14px 0 22px; font-size:15px; line-height:1.7; color:#667;">사용 환경에 맞춰 도면 보기 옵션을 세밀하게 설정할 수 있습니다.</p>
+        <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid #d5deef; aspect-ratio:16/9; background:#0e1b30;">
+          <img src="pages/p42.jpg" alt="도면 보기 옵션 설정" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 26%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. 제품·시스템 구성 ============ -->
+  <section id="product" data-screen-label="제품·시스템 구성" style="background:#fff; padding:clamp(64px,9vw,110px) 0;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px;">
+      <div data-reveal style="margin-bottom:40px; max-width:780px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><span style="width:26px; height:3px; background:#2563EB; border-radius:2px;"></span><span style="font-size:14px; font-weight:700; letter-spacing:.03em; color:#2563EB;">ZWCAD 365 : 제품 · 시스템 구성</span></div>
+        <h2 style="margin:0; font-size:clamp(28px,3.8vw,42px); line-height:1.22; font-weight:800; color:#243E66; letter-spacing:-.01em;">환경에 맞춰 유연하게,<br>부서별 자유 조합 구성</h2>
+      </div>
+
+      <!-- 8-1 제품 구성 -->
+      <div data-reveal>
+        <h3 style="margin:0 0 8px; font-size:20px; font-weight:700; color:#243E66;">제품 구성</h3>
+        <p style="margin:0 0 20px; font-size:15px; line-height:1.7; color:#667; max-width:80ch;">ZW365는 다양한 기업 환경과 사용 목적을 고려해 유연한 패키지를 제공합니다. 뷰어/디자인 2가지 형태로, 하나만 선택하는 구조가 아닌 <strong style="color:#243E66;">부서별·사용자별로 자유롭게 조합</strong>해 사용할 수 있습니다.</p>
+        <div style="overflow-x:auto; border:1px solid #dbe4f3; border-radius:14px;">
+          <table style="width:100%; min-width:640px; border-collapse:collapse; font-size:15px;">
+            <thead>
+              <tr style="background:linear-gradient(135deg,#2C508E,#3A66B4); color:#fff;">
+                <th style="text-align:left; padding:16px 20px; font-weight:700; width:120px;">구분</th>
+                <th style="text-align:left; padding:16px 20px; font-weight:700;">ZW365 Viewer</th>
+                <th style="text-align:left; padding:16px 20px; font-weight:700;">ZW365 Design</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-top:1px solid #e4eaf3;">
+                <td style="padding:16px 20px; font-weight:700; color:#243E66; background:#f6f9fe;">Solution</td>
+                <td style="padding:16px 20px; color:#445; line-height:1.6;">ZWCAD (for Web) · ZWCAD (for App) · ZWCAD Viewer</td>
+                <td style="padding:16px 20px; color:#445; line-height:1.6;">ZWCAD (for Web) · ZWCAD (for PC) · ZWCAD (for App) · ZWCAD Viewer</td>
+              </tr>
+              <tr style="border-top:1px solid #e4eaf3;">
+                <td style="padding:16px 20px; font-weight:700; color:#243E66; background:#f6f9fe;">설명</td>
+                <td style="padding:16px 20px; color:#445; line-height:1.6;">Web·App·PC 전용 뷰어, 클라우드 기반 뷰어 패키지</td>
+                <td style="padding:16px 20px; color:#445; line-height:1.6;">Web·App·PC 뷰어 및 편집까지, 기존 방식과 클라우드 플랫폼을 결합한 디자인 패키지</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 8-2 서버 권장 사양 -->
+      <div data-reveal style="margin-top:56px;">
+        <h3 style="margin:0 0 20px; font-size:20px; font-weight:700; color:#243E66;">서버 권장 사양</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; align-items:start;">
+          <div style="overflow-x:auto; border:1px solid #dbe4f3; border-radius:14px;">
+            <table style="width:100%; border-collapse:collapse; font-size:15px;">
+              <tbody>
+                <sc-for list="{{ serverRows }}" as="item" hint-placeholder-count="6">
+                  <tr style="border-bottom:1px solid #eef2fb;">
+                    <td style="padding:15px 20px; font-weight:700; color:#243E66; background:#f6f9fe; white-space:nowrap; width:130px;">{{ item.k }}</td>
+                    <td style="padding:15px 20px; color:#445; line-height:1.6;">{{ item.v }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <p style="margin:0; font-size:14px; line-height:1.7; color:#667;">위 리눅스 권장 사양은 서버 구축 권장값입니다. 네트워크 트래픽·저장소 용량·백업 저장소 등은 사내 동시접속 이용자, 업로드 파일 용량, DB 데이터 등을 조합해 구축이 필요합니다.</p>
+            <div style="background:#eef2fb; border-radius:12px; padding:18px 20px;">
+              <div style="font-size:14px; font-weight:700; color:#243E66; margin-bottom:8px;">구축 예시</div>
+              <ul style="margin:0; padding-left:18px; display:flex; flex-direction:column; gap:6px; font-size:13.5px; line-height:1.55; color:#556;">
+                <li>디스크 1TB 이상(보관 용량에 따라 조정)</li>
+                <li>네트워크 약 500명 이상 동시접속 기준 최소 대역폭 1Gbps 이상 권장</li>
+                <li>데이터 백업: 일정 수준 초과 시 서버 데이터 이관</li>
+                <li>(로컬 사용 시 업로드/다운로드/보관 사용량이 없어 최소값으로 조정)</li>
+              </ul>
+            </div>
+            <div style="border:1px solid #f3c9c9; background:#fdf4f4; border-radius:12px; padding:14px 18px; font-size:13.5px; line-height:1.6; color:#b04141;"><strong>+ Windows Server</strong> : Windows Server 2025 Datacenter Edition — 상세 스펙 추후 업데이트 예정</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8-3 로드맵 -->
+      <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal style="margin-top:56px;">
+          <h3 style="margin:0 0 24px; font-size:20px; font-weight:700; color:#243E66;">2026년 ZWCAD 365 로드맵</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;">
+            <sc-for list="{{ roadmap }}" as="item" hint-placeholder-count="4">
+              <div style="position:relative; background:#fff; border:1px solid #e1e8f5; border-radius:16px; padding:26px 22px; border-top:3px solid #2563EB;">
+                <div style="font-family:monospace; font-size:13px; font-weight:700; color:#2563EB;">STEP {{ item.n }}</div>
+                <div style="margin-top:12px; font-size:17px; font-weight:700; color:#243E66; line-height:1.35;">{{ item.title }}</div>
+                <div style="margin-top:9px; font-size:14px; line-height:1.6; color:#667;">{{ item.desc }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="contact" data-screen-label="상담 CTA" style="position:relative; background:#0A1628; overflow:hidden;">
+    <div style="position:absolute; inset:0; background:radial-gradient(820px 420px at 80% 0%, rgba(58,102,180,.5), rgba(10,22,40,0) 60%), radial-gradient(700px 380px at 10% 110%, rgba(37,99,235,.3), rgba(10,22,40,0) 55%);"></div>
+    <div data-reveal style="position:relative; max-width:980px; margin:0 auto; padding:clamp(64px,10vw,110px) 24px; text-align:center;">
+      <h2 style="margin:0; font-size:clamp(28px,4vw,46px); line-height:1.2; font-weight:800; color:#fff; letter-spacing:-.01em;">ZWCAD 365 도입을<br>검토 중이신가요?</h2>
+      <p style="margin:20px auto 0; font-size:clamp(16px,2vw,20px); line-height:1.6; color:#b9c6dd; max-width:42ch;">BLUETNS 전문가가 귀사의 환경에 맞는 최적 구성을 제안해 드립니다.</p>
+      <div style="margin-top:36px; display:flex; justify-content:center;">
+        <a href="{{ ctaHref }}" onClick="{{ openConsult }}" style="display:inline-flex; align-items:center; gap:9px; background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:17px; padding:17px 36px; border-radius:12px; box-shadow:0 14px 34px rgba(37,99,235,.45);" style-hover="background:#1d4fd0;">무료 상담 · 견적 신청 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#070f1d; color:#9fb0c8; padding:56px 0 40px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:9px; color:#fff; font-weight:800; font-size:18px; letter-spacing:-.01em;"><span style="display:inline-block; width:9px; height:16px; background:linear-gradient(180deg,#3A66B4,#2C508E); border-radius:2px;"></span>(주)블루티엔에스 · BLUETNS</div>
+        <div style="margin-top:14px; display:inline-flex; align-items:center; gap:8px; background:rgba(37,99,235,.16); border:1px solid rgba(37,99,235,.32); color:#9cc0ff; font-size:13px; font-weight:700; padding:6px 13px; border-radius:99px;">ZWCAD EA 단독총판</div>
+        <p style="margin:16px 0 0; font-size:14px; font-style:italic; color:#7e8eaa;">"Trust base is our pride"</p>
+      </div>
+      <div style="font-size:14px; line-height:1.85;">
+        <div style="color:#cdd8ea; font-weight:700; margin-bottom:8px;">블루티엔에스 기본정보</div>
+        <div>사업자번호 <span style="color:#cdd8ea;">114-86-93156</span></div>
+        <div>법인등록번호 <span style="color:#cdd8ea;">110111-4777037</span></div>
+        <div style="margin-top:6px;">(06524) 서울특별시 서초구 강남대로 101길 43<br>유영빌딩 5층 (잠원동 9-4)</div>
+        <div style="margin-top:6px;">대표 <span style="color:#cdd8ea;">박인호</span></div>
+        <div>대표번호 <span style="color:#cdd8ea;">02-595-7782</span> · 팩스 <span style="color:#cdd8ea;">02-595-7009</span></div>
+      </div>
+      <div style="font-size:14px; line-height:1.9;">
+        <div style="color:#cdd8ea; font-weight:700; margin-bottom:8px;">바로가기</div>
+        <div style="display:flex; flex-direction:column;">
+          <a href="#platform" style="color:#9fb0c8; text-decoration:none;" style-hover="color:#fff;">플랫폼 소개</a>
+          <a href="#product" style="color:#9fb0c8; text-decoration:none;" style-hover="color:#fff;">제품 구성</a>
+          <a href="{{ ctaHref }}" onClick="{{ openConsult }}" style="color:#9fb0c8; text-decoration:none;" style-hover="color:#fff;">상담 신청</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1180px; margin:36px auto 0; padding:20px 24px 0; border-top:1px solid #16233a; font-size:12.5px; color:#5f6f8c; display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;">
+      <span>© 2026 BLUETNS. All rights reserved.</span>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span>제품 콘텐츠 © ZWSOFT — ZWCAD 365</span>
+        <img src="img/logo_white.png" alt="ZWCAD KOREA" style="height:16px; width:auto; opacity:.8;">
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ 무료 상담 모달 ============ -->
+  <sc-if value="{{ consultOpen }}">
+    <div onClick="{{ closeModals }}" data-noprint style="position:fixed; inset:0; z-index:100; background:rgba(10,22,40,.55); backdrop-filter:blur(3px); display:flex; align-items:flex-start; justify-content:center; padding:24px; overflow:auto;">
+      <div onClick="{{ stop }}" style="background:#fff; border-radius:18px; width:100%; max-width:560px; margin:auto; box-shadow:0 30px 80px rgba(0,0,0,.45); overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 26px; background:linear-gradient(135deg,#2C508E,#3A66B4);">
+          <div>
+            <div style="font-size:12px; font-weight:700; letter-spacing:.05em; color:#bcd0f5;">BLUETNS · ZWCAD 365</div>
+            <div style="margin-top:3px; font-size:20px; font-weight:800; color:#fff;">무료 상담 신청</div>
+          </div>
+          <button onClick="{{ closeModals }}" aria-label="닫기" style="width:34px; height:34px; border-radius:8px; border:none; background:rgba(255,255,255,.16); color:#fff; font-size:20px; line-height:1; cursor:pointer;">×</button>
+        </div>
+
+        <sc-if value="{{ noSelected }}">
+          <div style="padding:22px 26px 26px;">
+            <p style="margin:0 0 16px; font-size:14px; color:#667; line-height:1.6;">상담을 도와드릴 담당자를 선택해 주세요. 선택하시면 연락처와 메일 보내기를 안내해 드립니다.</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <sc-for list="{{ contactsView }}" as="item" hint-placeholder-count="6">
+                <button onClick="{{ item.onSelect }}" style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; text-align:left; padding:14px 18px; border:1px solid #e4eaf3; border-radius:12px; background:#fff; cursor:pointer;" style-hover="border-color:#2563EB; background:#f6f9fe;">
+                  <span style="display:flex; align-items:center; gap:13px;">
+                    <span style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#2C508E,#3A66B4); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex:none;">{{ item.name }}</span>
+                    <span>
+                      <span style="display:block; font-size:16px; font-weight:700; color:#243E66;">{{ item.name }}</span>
+                      <span style="display:block; font-size:13px; color:#7a89a3; margin-top:2px;">{{ item.title }}</span>
+                    </span>
+                  </span>
+                  <span style="color:#9fb0c8; font-size:20px;">›</span>
+                </button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ noActive }}"><p style="margin:14px 0 0; font-size:13px; color:#9fb0c8; text-align:center; line-height:1.5;">표시할 담당자가 설정되어 있지 않습니다.<br>우측 상단 설정에서 담당자를 선택해 주세요.</p></sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ hasSelected }}">
+          <div style="padding:26px;">
+            <button onClick="{{ clearSelected }}" style="display:inline-flex; align-items:center; gap:6px; background:none; border:none; color:#7a89a3; font-size:13px; font-weight:600; cursor:pointer; padding:0; margin-bottom:18px;">← 담당자 목록</button>
+            <div style="text-align:center;">
+              <div style="width:64px; height:64px; margin:0 auto; border-radius:50%; background:linear-gradient(135deg,#2C508E,#3A66B4); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px;">{{ selectedContact.name }}</div>
+              <div style="margin-top:14px; font-size:22px; font-weight:800; color:#243E66;">{{ selectedContact.name }}</div>
+              <div style="margin-top:4px; font-size:14px; color:#7a89a3;">{{ selectedContact.title }}</div>
+            </div>
+            <div style="margin-top:22px; display:flex; flex-direction:column; gap:10px;">
+              <a href="{{ selectedContact.tel }}" style="display:flex; align-items:center; gap:12px; padding:14px 18px; border:1px solid #e4eaf3; border-radius:12px; text-decoration:none; color:#243E66; font-weight:600; font-size:15px;" style-hover="background:#f6f9fe;"><span style="color:#2563EB; font-size:12px; font-weight:700; min-width:32px;">전화</span>{{ selectedContact.phone }}</a>
+              <a href="{{ selectedContact.mailto }}" style="display:flex; align-items:center; gap:12px; padding:14px 18px; border:1px solid #e4eaf3; border-radius:12px; text-decoration:none; color:#243E66; font-weight:600; font-size:15px; word-break:break-all;" style-hover="background:#f6f9fe;"><span style="color:#2563EB; font-size:12px; font-weight:700; min-width:32px;">메일</span>{{ selectedContact.email }}</a>
+            </div>
+            <a href="{{ selectedContact.mailto }}" style="margin-top:18px; display:flex; align-items:center; justify-content:center; gap:8px; padding:16px; background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:16px; border-radius:12px; box-shadow:0 10px 24px rgba(37,99,235,.3);" style-hover="background:#1d4fd0;">메일로 상담 신청하기 →</a>
+            <p style="margin:14px 0 0; font-size:12px; color:#9fb0c8; text-align:center; line-height:1.5;">버튼을 누르면 메일 작성 창이 열리며, 내용은 자유롭게 수정하실 수 있습니다.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ 설정 모달 ============ -->
+  <sc-if value="{{ settingsOpen }}">
+    <div onClick="{{ closeModals }}" data-noprint style="position:fixed; inset:0; z-index:100; background:rgba(10,22,40,.55); backdrop-filter:blur(3px); display:flex; align-items:flex-start; justify-content:center; padding:24px; overflow:auto;">
+      <div onClick="{{ stop }}" style="background:#fff; border-radius:18px; width:100%; max-width:640px; margin:auto; box-shadow:0 30px 80px rgba(0,0,0,.45); overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 26px; border-bottom:1px solid #eef2fb;">
+          <div style="font-size:18px; font-weight:800; color:#243E66;">설정 · 담당자(Contact us) 관리</div>
+          <button onClick="{{ closeModals }}" aria-label="닫기" style="width:34px; height:34px; border-radius:8px; border:1px solid #e4eaf3; background:#fff; color:#52617d; font-size:20px; line-height:1; cursor:pointer;">×</button>
+        </div>
+
+        <sc-if value="{{ locked }}">
+          <div style="padding:40px 30px; text-align:center;">
+            <div style="font-size:16px; font-weight:700; color:#243E66;">관리자 전용 설정</div>
+            <p style="margin:8px 0 20px; font-size:13.5px; color:#7a89a3;">담당자 정보를 수정하려면 비밀번호를 입력하세요.</p>
+            <input type="password" value="{{ pw }}" onInput="{{ setPw }}" onKeyDown="{{ pwKey }}" placeholder="비밀번호" style="display:block; width:100%; max-width:280px; margin:0 auto; padding:13px 16px; border:1px solid #d5deef; border-radius:10px; font-size:15px; text-align:center; outline:none;">
+            <sc-if value="{{ pwError }}"><div style="margin-top:10px; font-size:13px; color:#d14343;">비밀번호가 올바르지 않습니다.</div></sc-if>
+            <button onClick="{{ submitPw }}" style="margin:18px auto 0; display:block; width:100%; max-width:280px; padding:14px; background:#2563EB; color:#fff; border:none; border-radius:10px; font-weight:700; font-size:15px; cursor:pointer;" style-hover="background:#1d4fd0;">확인</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ unlocked }}">
+          <div style="padding:22px 26px 26px;">
+            <p style="margin:0 0 18px; padding:12px 14px; background:#eef2fb; border-radius:10px; font-size:13px; color:#52617d; line-height:1.6;">체크박스로 <strong style="color:#243E66;">제안서에 표시할 담당자</strong>를 선택하고 정보를 수정한 뒤, <strong style="color:#243E66;">변경사항 저장</strong> 또는 <strong style="color:#243E66;">단일 HTML로 내보내기</strong>를 누르세요. 선택한 담당자만 고객용 상담 팝업에 노출됩니다.</p>
+            <div style="display:flex; flex-direction:column; gap:14px;">
+              <sc-for list="{{ editView }}" as="item" hint-placeholder-count="6">
+                <div style="border:1px solid #e4eaf3; border-radius:12px; padding:16px;">
+                  <label style="display:flex; align-items:center; gap:9px; margin-bottom:13px; padding-bottom:13px; border-bottom:1px dashed #e4eaf3; cursor:pointer;">
+                    <input type="checkbox" checked="{{ item.on }}" onChange="{{ item.onToggle }}" style="width:18px; height:18px; accent-color:#2563EB; cursor:pointer; flex:none;">
+                    <span style="font-size:13px; font-weight:700; color:#243E66;">제안서·상담 팝업에 표시</span>
+                  </label>
+                  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px;">
+                    <label style="display:block;"><span style="display:block; font-size:11px; font-weight:700; color:#9fb0c8; margin-bottom:5px;">이름</span><input value="{{ item.name }}" onInput="{{ item.onName }}" style="width:100%; padding:10px 12px; border:1px solid #d5deef; border-radius:8px; font-size:14px; outline:none;"></label>
+                    <label style="display:block;"><span style="display:block; font-size:11px; font-weight:700; color:#9fb0c8; margin-bottom:5px;">직함</span><input value="{{ item.title }}" onInput="{{ item.onTitle }}" style="width:100%; padding:10px 12px; border:1px solid #d5deef; border-radius:8px; font-size:14px; outline:none;"></label>
+                    <label style="display:block;"><span style="display:block; font-size:11px; font-weight:700; color:#9fb0c8; margin-bottom:5px;">연락처</span><input value="{{ item.phone }}" onInput="{{ item.onPhone }}" style="width:100%; padding:10px 12px; border:1px solid #d5deef; border-radius:8px; font-size:14px; outline:none;"></label>
+                    <label style="display:block;"><span style="display:block; font-size:11px; font-weight:700; color:#9fb0c8; margin-bottom:5px;">이메일</span><input value="{{ item.email }}" onInput="{{ item.onEmail }}" style="width:100%; padding:10px 12px; border:1px solid #d5deef; border-radius:8px; font-size:14px; outline:none;"></label>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:22px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button onClick="{{ saveNow }}" style="flex:1; min-width:140px; padding:16px; background:#fff; color:#243E66; border:1px solid #243E66; border-radius:12px; font-weight:700; font-size:15px; cursor:pointer;" style-hover="background:#f6f9fe;">변경사항 저장</button>
+              <button onClick="{{ exportHtml }}" style="flex:2; min-width:200px; padding:16px; background:#243E66; color:#fff; border:none; border-radius:12px; font-weight:700; font-size:15px; cursor:pointer;" style-hover="background:#1c3050;">{{ exportLabel }}</button>
+            </div>
+            <sc-if value="{{ savedFlash }}"><p style="margin:10px 0 0; font-size:13px; color:#1f8a5b; text-align:center; font-weight:700;">✓ 저장되었습니다.</p></sc-if>
+            <p style="margin:12px 0 0; font-size:12px; color:#9fb0c8; text-align:center; line-height:1.5;">내보낸 HTML 파일을 고객사에 메일·카카오톡으로 전달하면, 선택·수정한 담당자 정보가 그대로 적용된 제안서가 열립니다.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;},&quot;heroVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;gradient&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'gradient'&quot;},&quot;ctaHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#contact&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showRoadmap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = {
+    isMobile: (typeof window !== 'undefined' && window.innerWidth < 1024),
+    menuOpen: false,
+    settingsOpen: false, unlocked: false, pw: '', pwError: false,
+    consultOpen: false, selected: null, exporting: false, savedFlash: false,
+    contacts: (typeof window !== 'undefined' && Array.isArray(window.__BTS_CONTACTS__)) ? window.__BTS_CONTACTS__ : null,
+  };
+
+  defaultContacts() {
+    return [
+      { name: '박인호', title: '대표이사', phone: '010-4658-4866', email: 'ihpark@bluetns.co.kr', on: true },
+      { name: '허성경', title: '이사 · 총괄본부장', phone: '010-4072-7700', email: 'skheo@bluetns.co.kr', on: true },
+      { name: '나선열', title: '부장 · 사업부장', phone: '010-2008-9539', email: 'syna@bluetns.co.kr', on: true },
+      { name: '안병현', title: '차장 · 팀장', phone: '010-6437-4963', email: 'bhahn@bluetns.co.kr', on: true },
+      { name: '백지형', title: '과장', phone: '010-5128-2599', email: 'jhbaek@bluetns.co.kr', on: true },
+      { name: '신성원', title: '대리', phone: '010-9097-8444', email: 'swshin@bluetns.co.kr', on: true },
+    ];
+  }
+
+  norm(arr) { return arr.map((c) => ({ on: true, ...c })); }
+
+  loadContacts() {
+    if (Array.isArray(window.__BTS_CONTACTS__) && window.__BTS_CONTACTS__.length) return this.norm(window.__BTS_CONTACTS__);
+    try { const s = JSON.parse(localStorage.getItem('bts_contacts')); if (Array.isArray(s) && s.length) return this.norm(s); } catch (e) {}
+    return this.defaultContacts();
+  }
+
+  saveContacts(next) {
+    this.setState({ contacts: next });
+    try { localStorage.setItem('bts_contacts', JSON.stringify(next)); } catch (e) {}
+  }
+
+  updateContact(i, field, val) {
+    const next = (this.state.contacts || this.defaultContacts()).map((c, j) => j === i ? { ...c, [field]: val } : c);
+    this.saveContacts(next);
+  }
+
+  async exportHtml() {
+    if (this.state.exporting) return;
+    this.setState({ exporting: true });
+    try {
+      const T = (s) => '<scr' + 'ipt' + s + '</scr' + 'ipt>';
+      const src0 = await (await fetch(location.href, { cache: 'no-store' })).text();
+      const support = await (await fetch('./support.js', { cache: 'no-store' })).text();
+      let src = src0.replace(T(' src="./support.js">'), T('>' + support));
+      const paths = new Set();
+      const re = /(?:src=\"|url\(')(img\/[^\"')]+|pages\/[^\"')]+)/g;
+      let m;
+      while ((m = re.exec(src0))) paths.add(m[1]);
+      for (const p of paths) {
+        try {
+          const blob = await (await fetch(p, { cache: 'no-store' })).blob();
+          const data = await new Promise((res) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(blob); });
+          src = src.split('"' + p + '"').join('"' + data + '"').split("'" + p + "'").join("'" + data + "'");
+        } catch (e) {}
+      }
+      const seed = T('>window.__BTS_CONTACTS__=' + JSON.stringify(this.state.contacts || this.defaultContacts()) + ';') + '\n';
+      src = src.replace('</head>', seed + '</head>');
+      const out = new Blob([src], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(out);
+      a.download = 'ZWCAD365_제안서_BLUETNS.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    } catch (e) { alert('내보내기에 실패했습니다: ' + e.message); }
+    this.setState({ exporting: false });
+  }
+
+  componentDidMount() {
+    if (!this.state.contacts) this.setState({ contacts: this.loadContacts() });
+    this._onResize = () => {
+      const m = window.innerWidth < 1024;
+      if (m !== this.state.isMobile) this.setState({ isMobile: m, menuOpen: false });
+    };
+    window.addEventListener('resize', this._onResize);
+
+    // Scroll-reveal is a pure enhancement: content is fully visible by default.
+    // When an element enters the viewport we play a one-shot fade-in. If the
+    // observer never fires (throttled iframe, no JS), the content simply stays visible.
+    try {
+      if (!('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.animation = 'scReveal .7s ease both';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' });
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+    } catch (err) {}
+  }
+
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+
+  renderVals() {
+    const ctaHref = this.props.ctaHref ?? '#contact';
+    const heroVariant = this.props.heroVariant ?? 'dark';
+    const showRoadmap = this.props.showRoadmap ?? true;
+
+    const contacts = this.state.contacts || this.defaultContacts();
+    const mailSubject = encodeURIComponent('[ZWCAD 365] 도입 상담 문의');
+    const mailBody = encodeURIComponent('안녕하세요,\nZWCAD 365 도입을 검토 중입니다. 상담을 요청드립니다.\n\n· 회사명 : \n· 담당자 : \n· 연락처 : \n· 문의 내용 : \n');
+    const activeContacts = contacts.filter((c) => c.on !== false);
+    const contactsView = activeContacts.map((c, i) => ({
+      name: c.name, title: c.title, phone: c.phone, email: c.email, idx: i,
+      onSelect: () => this.setState({ selected: i }),
+      tel: 'tel:' + (c.phone || '').replace(/[^0-9+]/g, ''),
+      mailto: 'mailto:' + c.email + '?subject=' + mailSubject + '&body=' + mailBody,
+    }));
+    const editView = contacts.map((c, i) => ({
+      name: c.name, title: c.title, phone: c.phone, email: c.email, on: c.on !== false, idx: i,
+      onToggle: (e) => this.updateContact(i, 'on', e.target.checked),
+      onName: (e) => this.updateContact(i, 'name', e.target.value),
+      onTitle: (e) => this.updateContact(i, 'title', e.target.value),
+      onPhone: (e) => this.updateContact(i, 'phone', e.target.value),
+      onEmail: (e) => this.updateContact(i, 'email', e.target.value),
+    }));
+    const selectedContact = (this.state.selected != null) ? contactsView[this.state.selected] : null;
+    const activeCount = activeContacts.length;
+
+    const nav = [
+      { id: 'platform', label: '플랫폼' },
+      { id: 'mgmt', label: '통합관리' },
+      { id: 'screen', label: '기본화면' },
+      { id: 'project', label: '프로젝트' },
+      { id: 'library', label: '라이브러리' },
+      { id: 'process', label: '프로세스' },
+      { id: 'viewer', label: '도면보기' },
+      { id: 'product', label: '제품구성' },
+    ];
+
+    const effects = [
+      { n: '01', title: '협업', desc: '실시간 공동 작업 · 장소 제약 없음 · 원활한 커뮤니케이션' },
+      { n: '02', title: '버전 관리', desc: '도면 이력 관리 · 파일 버전 비교' },
+      { n: '03', title: '데이터 접근', desc: '기기 간 연동 · 어디서나 접근 · 확장성' },
+      { n: '04', title: '데이터 보안', desc: '권한 기반 접근 제어 · 프라이빗 서버' },
+      { n: '05', title: '관리 및 추적', desc: '통합 관리 · 기록 · 추적' },
+    ];
+
+    const mgmtCards = [
+      { n: '01', title: '기업 관리 (프로필)', desc: '기업 프로필 생성, 통합 플랫폼 로고를 기업 전용 로고로 설정' },
+      { n: '02', title: '사용 현황 대시보드', desc: '전체 라이선스 정보·제품 사용 이력을 실시간 확인' },
+      { n: '03', title: '사용자 관리 및 승인', desc: '계정 기반 사용자 생성·관리, 그룹/역할로 체계적 조직화' },
+      { n: '04', title: '기록 관리 (로그)', desc: '모든 작업 히스토리 기록 + 필터로 추적 관리' },
+    ];
+
+    const projectCards = [
+      { title: '프로젝트 탭', desc: '참여 중인 프로젝트 목록 확인, 새 프로젝트 생성, 클릭해 진입, 생성 인원 확인' },
+      { title: '프로젝트 생성 / 파일 워터마크', desc: '도면 열람 시 접속자 아이디·날짜를 표시해 유출 방지 및 경로 추적, 프로젝트 라벨 색상 지정' },
+      { title: '역할 (사용 권한)', desc: '참여 인원 권한을 역할 구분으로 간편하게 관리' },
+      { title: '역할 생성·관리·권한 편집', desc: '기본 권한 설정 후 생성, 우클릭으로 권한·이름 편집·삭제, 모듈(대분류)별 권한 부여 및 세부 수정' },
+      { title: '멤버 관리', desc: '멤버 역할(권한 수준) 확인, 인원 추가, 역할 선택 후 사용자 초대, 초대 링크 발송' },
+      { title: '내 파일', desc: '업로드 파일·ZWCAD 365에서 생성한 도면 확인, 폴더로 정리' },
+      { title: '파일 업로드', desc: '로컬 파일/폴더 업로드, dwg·dxf 도면과 pdf·lsp·exe 등 대부분 확장자 지원, 진행상황·실패 데이터 확인으로 유실 방지' },
+      { title: '도면 파일 기능', desc: '*.dwg 등 우클릭/선택으로 다양한 기능 사용' },
+      { title: '도면 공유', desc: '링크 공유로 외부인에게 보기 권한 제공(CAD 없이 웹 열람), 암호·유효기간·QR 전송, 워터마크 표시, 편집 불가, 링크 폐기·재발급' },
+      { title: '도면 팔로우', desc: '중점 도면 표시, 코멘트·변동사항 알림, 관심사 모아보기, 보기 모드 열기/팔로우 해제' },
+      { title: '형식 변환', desc: '도면을 열지 않고 PDF·이미지·DXF 등으로 내보내기' },
+    ];
+
+    const libraryCards = [
+      { title: '요소 라이브러리 탭', desc: '라이브러리 목록 확인, 더블클릭 진입, 새 라이브러리 생성, 컴포넌트 추출(도면층·블록 등)' },
+      { title: '새 라이브러리 생성', desc: '이름 입력, 라이브러리 유형 / 객체 유형 선택' },
+      { title: '라이브러리 유형', desc: '컴포넌트 라이브러리(도면 파일 내 저장) / 기타(글꼴 .shx·.ttf, 인쇄스타일 .ctb, 템플릿 .dwt, 선종류 .lin)' },
+      { title: '컴포넌트 추출', desc: '그래픽 원본(로컬·클라우드), 선종류·도면층·블록·해치·문자·치수 스타일 추출 → 라이브러리 저장' },
+      { title: '추출 결과 관리', desc: '삭제 / 다운로드(각 요소 DWG) / 모두 지우기, 라이브러리에 추가' },
+      { title: '접근 권한', desc: '공개(관리자 생성) / 개인(일반 사용자 생성)' },
+      { title: '라이브러리·그룹 관리', desc: '하위 폴더로 그룹 분할 보관(예: 블록 그룹 1/2), 이름 변경·삭제' },
+    ];
+
+    const serverRows = [
+      { k: '아키텍처', v: 'x86 또는 ARM' },
+      { k: 'CPU', v: '8코어 (8c)' },
+      { k: '메모리', v: '32GB' },
+      { k: '디스크 용량', v: '200GB 이상 (시스템 디스크, Docker 이미지 저장 용도)' },
+      { k: '운영 체제', v: 'Ubuntu 20.04.3 또는 CentOS 7.9' },
+      { k: '소프트웨어 환경', v: 'Docker CE 20.10.14 (기존 설치 필요)' },
+    ];
+
+    const roadmap = [
+      { n: '01', title: '인사 계정 시스템 연동', desc: '표준 API 제공, 고객사별 연동 개발 필요' },
+      { n: '02', title: '폴더 별 권한', desc: '프로젝트 내 각 폴더별 권한 지원' },
+      { n: '03', title: '다양한 파일 포맷 공유·지원', desc: '범위 지정으로 특정 파일·폴더별 뷰어 지원' },
+      { n: '04', title: '파일 클라우드 자동 동기화', desc: '동기화 업데이트 없이 자동 동기화' },
+    ];
+
+    return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      ctaHref,
+      heroDark: heroVariant === 'dark',
+      heroGradient: heroVariant === 'gradient',
+      showRoadmap,
+      nav, effects, mgmtCards, projectCards, libraryCards, serverRows, roadmap,
+      // settings + consult
+      openSettings: () => this.setState({ settingsOpen: true, menuOpen: false, pw: '', pwError: false }),
+      savePdf: () => { this.setState({ menuOpen: false, settingsOpen: false, consultOpen: false }); setTimeout(() => window.print(), 80); },
+      openConsult: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ consultOpen: true, selected: null, menuOpen: false }); },
+      closeModals: () => this.setState({ settingsOpen: false, consultOpen: false, selected: null }),
+      stop: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+      settingsOpen: this.state.settingsOpen,
+      consultOpen: this.state.consultOpen,
+      unlocked: this.state.unlocked,
+      locked: !this.state.unlocked,
+      pw: this.state.pw,
+      pwError: this.state.pwError,
+      setPw: (e) => this.setState({ pw: e.target.value, pwError: false }),
+      submitPw: () => this.setState((s) => ({ unlocked: s.pw === 'bts7782!', pwError: s.pw !== 'bts7782!' })),
+      pwKey: (e) => { if (e.key === 'Enter') this.setState((s) => ({ unlocked: s.pw === 'bts7782!', pwError: s.pw !== 'bts7782!' })); },
+      exporting: this.state.exporting,
+      exportLabel: this.state.exporting ? '내보내는 중…' : '단일 HTML로 내보내기',
+      exportHtml: () => this.exportHtml(),
+      saveNow: () => { this.saveContacts(this.state.contacts || this.defaultContacts()); this.setState({ savedFlash: true }); clearTimeout(this._savedT); this._savedT = setTimeout(() => this.setState({ savedFlash: false }), 2000); },
+      savedFlash: this.state.savedFlash,
+      activeCount,
+      noActive: activeCount === 0,
+      contactsView, editView, selectedContact,
+      hasSelected: this.state.selected != null,
+      noSelected: this.state.selected == null,
+      clearSelected: () => this.setState({ selected: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

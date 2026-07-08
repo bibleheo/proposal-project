@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#05080f;overflow:hidden}
+@keyframes sceneIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<div style="position:fixed;inset:0;background:#05080f;overflow:hidden;font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;cursor:pointer;" onClick="{{ advance }}">
+  <div ref="{{ stageRef }}" style="position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform:translate(-50%,-50%);transform-origin:center center;">
+
+    <!-- ===================== SCENE 0 · 인트로 ===================== -->
+    <sc-if value="{{ scene0 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(120% 130% at 75% 20%,#1f2937,#141a22 55%,#0a0d12 100%);overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(135deg,rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(45deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:120px 120px;"></div>
+      <div style="position:absolute;left:120px;top:330px;max-width:1300px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.3em;color:#9fb0c8;font-weight:700;margin-bottom:28px;">EP6 · 결정의 이유</div>
+        <h1 style="font-size:82px;line-height:1.12;font-weight:800;color:#fff;letter-spacing:-.025em;">그래서, 왜<br>블루티엔에스인가</h1>
+        <p style="margin-top:32px;font-size:30px;color:#cdd8e8;font-weight:400;line-height:1.5;">제품도, 비용도, 지원도 확인하셨다면 —<br>남은 질문은 하나입니다.</p>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 1 · 회사 정의 ===================== -->
+    <sc-if value="{{ scene1 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:#f4f6fa;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:46%;height:100%;background:linear-gradient(160deg,#e3e8f0,#cfd8e6);"></div>
+      <div style="position:absolute;left:120px;top:360px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:40px;font-weight:800;color:#1e3a5f;letter-spacing:.08em;">BLUETNS</div>
+        <div style="margin-top:14px;font-size:22px;color:#5b6b80;">블루티엔에스</div>
+      </div>
+      <div style="position:absolute;left:910px;top:300px;max-width:880px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.26em;color:#2563eb;font-weight:700;margin-bottom:20px;">한 줄로 말하면</div>
+        <h2 style="font-size:56px;line-height:1.2;font-weight:800;color:#0a1628;letter-spacing:-.02em;">ZWCAD EA <span style="color:#2563eb;">단독총판</span>,<br>2012년부터.</h2>
+      </div>
+      <div style="position:absolute;left:910px;top:560px;max-width:840px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <p style="font-size:30px;line-height:1.55;color:#334155;">도입부터 기술지원, 교육까지<br><span style="font-weight:700;color:#0a1628;">직접 책임지는 자리</span>에서 일합니다.</p>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 2 · 연혁 ===================== -->
+    <sc-if value="{{ scene2 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:#0a1628;overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:96px 96px;"></div>
+      <div style="position:absolute;left:120px;top:120px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div style="font-size:19px;letter-spacing:.28em;color:#7fa8e6;font-weight:700;margin-bottom:18px;">History</div>
+        <h2 style="font-size:50px;line-height:1.12;font-weight:800;color:#fff;letter-spacing:-.02em;">블루티엔에스가 걸어온 길</h2>
+      </div>
+      <div style="position:absolute;left:120px;top:430px;right:120px;height:3px;background:rgba(127,168,230,.25);"></div>
+      <div style="position:absolute;left:120px;top:330px;width:1680px;display:flex;justify-content:space-between;">
+        <div style="width:300px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);"><div style="font-size:30px;font-weight:800;color:#7fa8e6;">2012</div><div style="margin-top:84px;font-size:26px;font-weight:800;color:#fff;">법인 설립 · 총판 계약</div><div style="margin-top:10px;font-size:20px;color:#9fb0c8;line-height:1.45;">ZWCAD 엔터프라이즈 파트너 계약</div></div>
+        <div style="width:300px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);"><div style="font-size:30px;font-weight:800;color:#7fa8e6;">2014</div><div style="margin-top:84px;font-size:26px;font-weight:800;color:#fff;">대기업 계약 확대</div><div style="margin-top:10px;font-size:20px;color:#9fb0c8;line-height:1.45;">주요 건설·제조사 EA 계약 체결</div></div>
+        <div style="width:300px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateY({{ry4}}px);"><div style="font-size:30px;font-weight:800;color:#7fa8e6;">2017</div><div style="margin-top:84px;font-size:26px;font-weight:800;color:#fff;">대한민국 우수기업대상</div><div style="margin-top:10px;font-size:20px;color:#9fb0c8;line-height:1.45;">계약 레퍼런스 다수 확보</div></div>
+        <div style="width:300px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs5}};transform:translateY({{ry5}}px);"><div style="font-size:30px;font-weight:800;color:#7fa8e6;">2020</div><div style="margin-top:84px;font-size:26px;font-weight:800;color:#fff;">ZWCAD EA 총판 계약</div><div style="margin-top:10px;font-size:20px;color:#9fb0c8;line-height:1.45;">대기업 EA 계약 본격 확대</div></div>
+        <div style="width:300px;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs6}};transform:translateY({{ry6}}px);"><div style="font-size:30px;font-weight:800;color:#7cc47a;">2023~</div><div style="margin-top:84px;font-size:26px;font-weight:800;color:#fff;">대기업이 신뢰하는 파트너</div><div style="margin-top:10px;font-size:20px;color:#cdd8e8;line-height:1.45;">전문성과 기술력으로 성장 지속</div></div>
+      </div>
+      <div style="position:absolute;left:120px;top:418px;width:1680px;display:flex;justify-content:space-between;">
+        <div style="width:300px;transition:opacity .5s ease;opacity:{{rs2}};"><div style="width:20px;height:20px;border-radius:50%;background:#7fa8e6;border:4px solid #0a1628;box-shadow:0 0 0 3px rgba(127,168,230,.3);"></div></div>
+        <div style="width:300px;transition:opacity .5s ease;opacity:{{rs3}};"><div style="width:20px;height:20px;border-radius:50%;background:#7fa8e6;border:4px solid #0a1628;box-shadow:0 0 0 3px rgba(127,168,230,.3);"></div></div>
+        <div style="width:300px;transition:opacity .5s ease;opacity:{{rs4}};"><div style="width:20px;height:20px;border-radius:50%;background:#7fa8e6;border:4px solid #0a1628;box-shadow:0 0 0 3px rgba(127,168,230,.3);"></div></div>
+        <div style="width:300px;transition:opacity .5s ease;opacity:{{rs5}};"><div style="width:20px;height:20px;border-radius:50%;background:#7fa8e6;border:4px solid #0a1628;box-shadow:0 0 0 3px rgba(127,168,230,.3);"></div></div>
+        <div style="width:300px;transition:opacity .5s ease;opacity:{{rs6}};"><div style="width:20px;height:20px;border-radius:50%;background:#7cc47a;border:4px solid #0a1628;box-shadow:0 0 0 3px rgba(124,196,122,.3);"></div></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 3 · 고객사 ===================== -->
+    <sc-if value="{{ scene3 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f2744,#0a1628 65%);overflow:hidden;">
+      <div style="position:absolute;left:120px;top:84px;display:flex;align-items:flex-end;gap:30px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <div><div style="font-size:19px;letter-spacing:.28em;color:#7fa8e6;font-weight:700;margin-bottom:16px;">Clients</div><h2 style="font-size:48px;line-height:1.1;font-weight:800;color:#fff;letter-spacing:-.02em;">이미 많은 기업이 ZWCAD를 씁니다</h2></div>
+        <div style="padding:11px 22px;border-radius:999px;background:rgba(37,99,235,.16);border:1px solid rgba(91,141,239,.5);color:#9fc0ff;font-size:20px;font-weight:700;margin-bottom:6px;">90개국 90만 유저 · 국내 대기업 300사+</div>
+      </div>
+      <div style="position:absolute;left:120px;top:250px;width:1680px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;">
+        <div style="transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);"><div style="font-size:24px;font-weight:800;color:#fff;text-align:center;padding-bottom:18px;border-bottom:2px solid rgba(127,168,230,.3);">건설사</div><div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;"><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div></div></div>
+        <div style="transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);"><div style="font-size:24px;font-weight:800;color:#fff;text-align:center;padding-bottom:18px;border-bottom:2px solid rgba(127,168,230,.3);">기계 · 제조 · 조선</div><div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;"><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div></div></div>
+        <div style="transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs4}};transform:translateY({{ry4}}px);"><div style="font-size:24px;font-weight:800;color:#fff;text-align:center;padding-bottom:18px;border-bottom:2px solid rgba(127,168,230,.3);">설계 · 토목 · 인테리어</div><div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;"><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div></div></div>
+        <div style="transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);opacity:{{rs5}};transform:translateY({{ry5}}px);"><div style="font-size:24px;font-weight:800;color:#fff;text-align:center;padding-bottom:18px;border-bottom:2px solid rgba(127,168,230,.3);">공공기관 · 기타</div><div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;"><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div><div style="height:78px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:13px;letter-spacing:.1em;color:#5e7392;">LOGO</div></div></div>
+      </div>
+      <div style="position:absolute;left:120px;top:744px;font-size:19px;color:#5e7392;transition:opacity .5s ease;opacity:{{rs5}};">* 로고는 사용 범위 확정 후 실제 로고로 교체 예정</div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== SCENE 4 · Thank you / 연락처 ===================== -->
+    <sc-if value="{{ scene4 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;background:radial-gradient(130% 130% at 60% 35%,#222c38,#151b23 55%,#0a0d12 100%);overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(135deg,rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(45deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:120px 120px;"></div>
+      <div style="position:absolute;left:120px;top:300px;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);opacity:{{rs1}};transform:translateY({{ry1}}px);">
+        <h1 style="font-size:120px;line-height:1;font-weight:800;color:#fff;letter-spacing:-.03em;">Thank you</h1>
+        <p style="margin-top:30px;font-size:30px;color:#cdd8e8;font-weight:600;">고객의 신뢰가 최선이다 <span style="color:#7e91ad;font-weight:400;">· Trust base is our pride</span></p>
+      </div>
+      <div style="position:absolute;left:120px;bottom:120px;display:flex;align-items:flex-end;gap:60px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs2}};transform:translateY({{ry2}}px);">
+        <div>
+          <div style="font-size:18px;letter-spacing:.22em;color:#7fa8e6;font-weight:700;margin-bottom:18px;">ZWCAD 영업 문의</div>
+          <div style="font-size:28px;font-weight:700;color:#fff;">박인호 대표이사</div>
+          <div style="margin-top:12px;font-size:22px;color:#cdd8e8;line-height:1.6;">ihpark@bluetns.co.kr<br>bluetns.co.kr</div>
+        </div>
+        <div style="border-left:1px solid rgba(255,255,255,.18);padding-left:60px;">
+          <div style="font-size:30px;font-weight:800;color:#fff;letter-spacing:.06em;">BLUETNS</div>
+          <div style="margin-top:8px;font-size:18px;color:#7e91ad;">주식회사 블루티엔에스</div>
+        </div>
+      </div>
+      <div style="position:absolute;left:120px;top:660px;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);opacity:{{rs3}};transform:translateY({{ry3}}px);">
+        <div style="background:rgba(37,99,235,.16);border:1px solid rgba(91,141,239,.45);border-radius:16px;padding:26px 36px;display:inline-flex;align-items:center;gap:30px;">
+          <div style="font-size:26px;font-weight:800;color:#fff;white-space:nowrap;">도입 · 견적 · 컨설팅, 직접 챙기겠습니다</div>
+          <div style="font-size:21px;color:#9fc0ff;font-weight:700;border-left:1px solid rgba(255,255,255,.2);padding-left:30px;">tally.so/r/44E7GX</div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== 인디케이터 ===================== -->
+    <div style="position:absolute;left:48px;bottom:40px;z-index:50;display:flex;align-items:center;gap:18px;padding:11px 20px;border-radius:999px;background:rgba(10,22,40,.6);backdrop-filter:blur(8px);">
+      <div style="display:flex;align-items:center;gap:9px;"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="5"><div style="{{ d.st }}"></div></sc-for></div>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,.18);"></div>
+      <div style="font-size:15px;color:#9fb0c8;font-weight:600;letter-spacing:.04em;white-space:nowrap;">EP6 · {{ sceneName }}</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  scenes = [1,2,6,5,3];
+  names = ['인트로','회사 정의','연혁','고객사','Thank you'];
+  state = { scene:0, step:0 };
+  stageRef = React.createRef();
+
+  componentDidMount(){
+    window.__deck = this;
+    this.fit();
+    this._fit = ()=>this.fit();
+    window.addEventListener('resize', this._fit);
+    this._key = (e)=>{
+      if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); this.next(); }
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); this.prev(); }
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize', this._fit);
+    window.removeEventListener('keydown', this._key);
+  }
+  fit(){
+    const el = this.stageRef.current; if(!el) return;
+    const s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    el.style.transform = 'translate(-50%,-50%) scale('+s+')';
+  }
+  next(){
+    const {scene,step} = this.state;
+    if(step < this.scenes[scene]) this.setState({step:step+1});
+    else if(scene < this.scenes.length-1) this.setState({scene:scene+1, step:0});
+  }
+  prev(){
+    const {scene,step} = this.state;
+    if(step > 0) this.setState({step:step-1});
+    else if(scene > 0){ const p = scene-1; this.setState({scene:p, step:this.scenes[p]}); }
+  }
+  renderVals(){
+    const {scene,step} = this.state;
+    const v = { stageRef:this.stageRef, advance:()=>this.next() };
+    for(let i=0;i<this.scenes.length;i++) v['scene'+i] = (i===scene);
+    for(let n=1;n<=12;n++){ v['rs'+n] = step>=n?1:0; v['ry'+n] = step>=n?0:18; }
+    v.sceneName = this.names[scene];
+    v.dots = this.scenes.map((k,i)=>{
+      const on=i===scene, past=i<scene;
+      return { st:`width:${on?22:8}px;height:8px;border-radius:999px;transition:all .4s ease;background:${on?'#2563eb':past?'rgba(232,237,244,.7)':'rgba(232,237,244,.22)'}` };
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>
