@@ -15,6 +15,8 @@
 | [`zyxcad-ax-proposal/`](./zyxcad-ax-proposal/) | ZYXCAD AX 제안서 | `bibleheo/zyxcad-ax-proposal` |
 | [`ZWCAD-Video-Proposal/`](./ZWCAD-Video-Proposal/) | ZWCAD 영상 제안서 | `bibleheo/ZWCAD-Video-Proposal` |
 | [`bts-proposal/`](./bts-proposal/) | 블루티엔에스 제안서 | `bibleheo/bts-proposal` |
+| [`Bitdefender-Intro/`](./Bitdefender-Intro/) | Bitdefender 소개 | `bibleheo/Bitdefender-Intro` |
+| [`Bitdefender-Compare/`](./Bitdefender-Compare/) | Bitdefender 기능 비교 | `bibleheo/Bitdefender-Compare` |
 
 각 폴더는 원본 리포지토리의 `index.html`을 진입점으로 그대로 유지합니다.
 

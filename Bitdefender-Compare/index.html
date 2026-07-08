@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="20" fill="#14161B"/><rect x="30" y="30" width="40" height="40" rx="11" fill="#E11924"/><text x="50" y="51" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="central">VS</text></svg></template>
+<helmet>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#14161B;background:#ffffff;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
+    h1,h2,h3{text-wrap:balance}
+    button{font-family:inherit;word-break:keep-all}
+    a{color:inherit}
+    ::selection{background:#E11924;color:#fff}
+  </style>
+  <script src="compare-data.js"></script>
+</helmet>
+
+<div data-screen-label="타사 비교 페이지" style="background:#ffffff">
+
+  <!-- ===== HEADER ===== -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid #E7E9ED">
+    <div style="max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="{{ intro }}" style="display:flex;align-items:center;gap:11px;text-decoration:none">
+        <img src="assets/logos/bitdefender-icon.webp" alt="Bitdefender" style="width:34px;height:34px;border-radius:9px;flex:none;display:block">
+        <div style="line-height:1.15">
+          <div style="font-size:16px;font-weight:800;color:#14161B;letter-spacing:-0.01em">Bitdefender</div>
+          <div style="font-size:11px;font-weight:600;color:#767D89;letter-spacing:0.02em">GravityZone</div>
+        </div>
+      </a>
+      <nav style="display:flex;align-items:center;gap:6px">
+        <a href="{{ intro }}" style="padding:9px 14px;font-size:14px;font-weight:600;color:#3C414C;text-decoration:none;border-radius:8px">제품 소개서</a>
+        <a href="#top" style="padding:9px 14px;font-size:14px;font-weight:700;color:#E11924;text-decoration:none;border-radius:8px;background:#FCEFF0">타사 비교</a>
+        <button onClick="{{ openInquiry }}" style="margin-left:6px;padding:9px 16px;font-size:14px;font-weight:700;color:#fff;background:#14161B;border:none;border-radius:8px;cursor:pointer;font-family:inherit">도입 문의</button>
+        <button onClick="{{ openGate }}" title="설정" style="margin-left:2px;width:38px;height:38px;border:1px solid #E7E9ED;background:#fff;border-radius:8px;cursor:pointer;font-size:17px;color:#767D89;display:flex;align-items:center;justify-content:center">⚙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="top" style="background:#14161B;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-120px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(225,25,36,0.35),rgba(225,25,36,0) 70%)"></div>
+    <div style="max-width:1180px;margin:0 auto;padding:72px 28px 64px;position:relative">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:0.04em;color:#F2B5B8">
+        <span style="width:6px;height:6px;border-radius:50%;background:#E11924"></span>
+        엔드포인트 보안 솔루션 1:1 기능 비교 · 2026
+      </div>
+      <h1 style="font-size:46px;line-height:1.18;font-weight:800;letter-spacing:-0.025em;margin:22px 0 0;max-width:16em">Bitdefender vs 타사 보안 솔루션 기능 비교 분석</h1>
+      <p style="font-size:17px;line-height:1.7;color:#AEB4BE;margin:20px 0 0;max-width:40em">Bitdefender GravityZone와 안랩(V3)·ESET·Kaspersky를 중앙 관리 콘솔, Windows·Linux 보호 기능 기준으로 1:1 비교했습니다. 마케팅 표현을 배제하고, 각 솔루션의 공개 사양과 실제 기능 제공 여부만을 근거로 정리했습니다.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
+        <div style="padding:18px 24px;border:1px solid rgba(255,255,255,0.14);border-radius:14px;background:rgba(255,255,255,0.03)">
+          <div style="font-size:30px;font-weight:800;color:#fff">115<span style="font-size:16px;color:#AEB4BE;font-weight:600">개</span></div>
+          <div style="font-size:13px;color:#AEB4BE;margin-top:3px">비교 기능 항목</div>
+        </div>
+        <div style="padding:18px 24px;border:1px solid rgba(255,255,255,0.14);border-radius:14px;background:rgba(255,255,255,0.03)">
+          <div style="font-size:30px;font-weight:800;color:#fff">4<span style="font-size:16px;color:#AEB4BE;font-weight:600">종</span></div>
+          <div style="font-size:13px;color:#AEB4BE;margin-top:3px">비교 솔루션</div>
+        </div>
+        <div style="padding:18px 24px;border:1px solid rgba(255,255,255,0.14);border-radius:14px;background:rgba(255,255,255,0.03)">
+          <div style="font-size:30px;font-weight:800;color:#fff">3<span style="font-size:16px;color:#AEB4BE;font-weight:600">개</span></div>
+          <div style="font-size:13px;color:#AEB4BE;margin-top:3px">콘솔 · Windows · Linux</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCORE SUMMARY ===== -->
+  <section style="max-width:1180px;margin:0 auto;padding:64px 28px 8px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:13px;font-weight:800;letter-spacing:0.06em;color:#E11924;text-transform:uppercase">기능 충족 현황</div>
+        <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:10px 0 0">전체 115개 기능 지원 비교</h2>
+      </div>
+      <div style="display:flex;gap:16px;font-size:12.5px;color:#767D89">
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:#16875A"></span>완전 지원</span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:#D98A00"></span>부분 지원</span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:11px;height:11px;border-radius:3px;background:#EEF1F4;border:1px solid #DDE1E6"></span>미지원</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-top:28px">
+      <sc-for list="{{ totals }}" as="t" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;gap:24px;padding:18px 22px;border-radius:14px;border: {{ t.cardBorder }};background: {{ t.cardBg }}">
+          <div style="width:210px;flex:none">
+            <div style="font-size:15.5px;font-weight:800;color: {{ t.labelColor }};letter-spacing:-0.01em">{{ t.label }}</div>
+            <div style="font-size:12px;color:#767D89;margin-top:3px">{{ t.scoreText }}</div>
+          </div>
+          <div style="flex:1 1 auto;min-width:120px">
+            <div style="height:13px;border-radius:7px;background:#EEF1F4;overflow:hidden;display:flex">
+              <div style="width: {{ t.fullPct }}%;background:#16875A"></div>
+              <div style="width: {{ t.partialPct }}%;background:#D98A00"></div>
+            </div>
+            <div style="display:flex;gap:16px;margin-top:9px;font-size:12px;color:#767D89">
+              <span>완전 {{ t.full }}</span>
+              <span>부분 {{ t.partial }}</span>
+              <span>미지원 {{ t.none }}</span>
+            </div>
+          </div>
+          <div style="width:88px;flex:none;text-align:right">
+            <div style="font-size:28px;font-weight:800;color: {{ t.labelColor }};line-height:1">{{ t.pctText }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:12.5px;color:#9AA1AC;margin:16px 2px 0;line-height:1.6">※ 각 항목은 솔루션의 공개 사양·관리 콘솔 설정 가능 여부를 기준으로 완전 지원 / 부분 지원 / 미지원으로 분류했습니다.</p>
+  </section>
+
+  <!-- ===== TABS + TABLE ===== -->
+  <section style="max-width:1180px;margin:0 auto;padding:48px 28px 8px">
+    <div style="font-size:13px;font-weight:800;letter-spacing:0.06em;color:#E11924;text-transform:uppercase">상세 기능 비교</div>
+    <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:10px 0 26px">{{ activeLabel }} · {{ activeCount }}</h2>
+
+    <div style="display:flex;gap:2px;border-bottom:1px solid #E7E9ED;margin-bottom:26px;overflow-x:auto">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button onClick="{{ t.onClick }}" style="appearance:none;border:none;background: {{ t.bg }};border-bottom: {{ t.border }};color: {{ t.fg }};font-weight: {{ t.weight }};font-size:15px;padding:14px 22px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:8px">
+          <span>{{ t.label }}</span>
+          <span style="font-size:12px;color:#9AA1AC;font-weight:600">{{ t.count }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <!-- per-tab score strip -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px">
+      <sc-for list="{{ activeScores }}" as="s" hint-placeholder-count="4">
+        <div style="flex:1 1 170px;padding:15px 18px;border-radius:12px;border: {{ s.cardBorder }};background: {{ s.cardBg }}">
+          <div style="font-size:13px;font-weight:700;color: {{ s.labelColor }}">{{ s.label }}</div>
+          <div style="display:flex;align-items:baseline;gap:5px;margin-top:7px">
+            <span style="font-size:27px;font-weight:800;color: {{ s.labelColor }};line-height:1">{{ s.full }}</span>
+            <span style="font-size:14px;color:#767D89">/ {{ s.total }} 지원</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- legend -->
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:14px;font-size:12.5px;color:#767D89">
+      <span style="display:flex;align-items:center;gap:7px"><span style="width:22px;height:22px;border-radius:50%;background:#16875A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">✓</span>지원</span>
+      <span style="display:flex;align-items:center;gap:7px"><span style="width:22px;height:22px;border-radius:50%;background:#D98A00;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">△</span>부분 지원</span>
+      <span style="display:flex;align-items:center;gap:7px"><span style="width:22px;height:22px;border-radius:50%;background:#EBEDF0;color:#99A0AB;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">✕</span>미지원</span>
+      <span style="margin-left:auto;font-size:12px;color:#9AA1AC">ⓘ 표시 항목은 클릭 시 상세 설명이 펼쳐집니다</span>
+    </div>
+
+    <!-- table -->
+    <div style="overflow-x:auto;border:1px solid #E7E9ED;border-radius:16px;background:#fff">
+      <div style="min-width:792px">
+        <!-- header row -->
+        <div style="display:flex;align-items:stretch;border-bottom:2px solid #14161B">
+          <div style="flex:1 1 auto;min-width:260px;padding:15px 18px;display:flex;align-items:center;font-size:12px;font-weight:800;letter-spacing:0.03em;color:#767D89;position:sticky;left:0;background:#fff;z-index:3">기능 항목</div>
+          <div style="width:133px;flex:none;padding:13px 8px;text-align:center;background:#FCEFF0;border-left:2px solid #E11924;border-right:2px solid #E11924">
+            <div style="font-size:14.5px;font-weight:800;color:#E11924">Bitdefender</div>
+            <div style="font-size:10.5px;color:#B5141C;margin-top:2px;font-weight:600">GravityZone</div>
+          </div>
+          <div style="width:133px;flex:none;padding:13px 8px;text-align:center">
+            <div style="font-size:14.5px;font-weight:700;color:#14161B">안랩</div>
+            <div style="font-size:10.5px;color:#767D89;margin-top:2px;font-weight:600">V3</div>
+          </div>
+          <div style="width:133px;flex:none;padding:13px 8px;text-align:center">
+            <div style="font-size:14.5px;font-weight:700;color:#14161B">ESET</div>
+            <div style="font-size:10.5px;color:#767D89;margin-top:2px;font-weight:600">Endpoint</div>
+          </div>
+          <div style="width:133px;flex:none;padding:13px 8px;text-align:center">
+            <div style="font-size:14.5px;font-weight:700;color:#14161B">Kaspersky</div>
+            <div style="font-size:10.5px;color:#767D89;margin-top:2px;font-weight:600">Endpoint</div>
+          </div>
+        </div>
+
+        <!-- body -->
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+          <sc-if value="{{ r.isGroup }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#F6F7F9;border-top:1px solid #E7E9ED;border-bottom:1px solid #E7E9ED;min-width:792px">
+              <div style="position:sticky;left:0;display:inline-block;padding:11px 18px;font-size:12px;font-weight:800;letter-spacing:0.04em;color:#E11924;text-transform:uppercase;background:#F6F7F9">{{ r.name }}</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ r.isItem }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div onClick="{{ r.toggle }}" style="display:flex;align-items:stretch;border-bottom:1px solid #EEF1F4;cursor: {{ r.cursor }}">
+                <div style="flex:1 1 auto;min-width:260px;padding: {{ rowPadV }} 18px;position:sticky;left:0;background:#fff;z-index:2">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="font-size:14px;font-weight:600;color:#14161B;line-height:1.45">{{ r.title }}</span>
+                    <sc-if value="{{ r.hasNote }}" hint-placeholder-val="{{ false }}">
+                      <span style="flex:none;width:17px;height:17px;border-radius:50%;border:1px solid #C9CED6;color:#767D89;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;line-height:1">i</span>
+                    </sc-if>
+                  </div>
+                  <sc-if value="{{ r.sub }}" hint-placeholder-val="">
+                    <div style="font-size:12.5px;color:#767D89;margin-top:4px;line-height:1.5">{{ r.sub }}</div>
+                  </sc-if>
+                </div>
+                <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="4">
+                  <div style="width:133px;flex:none;display:flex;align-items:center;justify-content:center;background: {{ c.cellBg }};border-left: {{ c.borderLeft }};border-right: {{ c.borderRight }}">
+                    <span style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background: {{ c.bg }};color: {{ c.color }}">{{ c.glyph }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-if value="{{ r.expanded }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#FBFBFC;border-bottom:1px solid #EEF1F4;min-width:792px">
+                  <div style="position:sticky;left:0;display:block;max-width:780px;padding:13px 18px 17px;font-size:13px;color:#3C414C;line-height:1.65">
+                    <span style="font-weight:700;color:#E11924;margin-right:6px">참고</span>{{ r.note }}
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BITDEFENDER ONLY ===== -->
+  <section style="background:#14161B;color:#fff;margin-top:64px">
+    <div style="max-width:1180px;margin:0 auto;padding:64px 28px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:rgba(225,25,36,0.16);font-size:12.5px;font-weight:700;color:#F2B5B8">Bitdefender 단독 지원</div>
+      <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:18px 0 8px;color:#fff">타사가 제공하지 않는 차별화 기능</h2>
+      <p style="font-size:15px;color:#AEB4BE;margin:0 0 32px;max-width:42em">아래 기능은 비교 대상 솔루션 중 Bitdefender GravityZone만 제공합니다.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px">
+        <sc-for list="{{ bdOnlyTop }}" as="b" hint-placeholder-count="3">
+          <div style="flex:1 1 280px;padding:24px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-left:3px solid #E11924">
+            <div style="font-size:11.5px;font-weight:700;letter-spacing:0.03em;color:#F2B5B8;text-transform:uppercase">{{ b.category }} · {{ b.group }}</div>
+            <div style="font-size:17px;font-weight:700;color:#fff;margin:11px 0 8px;letter-spacing:-0.01em">{{ b.feature }}</div>
+            <div style="font-size:13.5px;color:#AEB4BE;line-height:1.6">{{ b.description }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px">
+        <sc-for list="{{ bdOnlyBottom }}" as="b" hint-placeholder-count="2">
+          <div style="flex:1 1 280px;padding:24px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-left:3px solid #E11924">
+            <div style="font-size:11.5px;font-weight:700;letter-spacing:0.03em;color:#F2B5B8;text-transform:uppercase">{{ b.category }} · {{ b.group }}</div>
+            <div style="font-size:17px;font-weight:700;color:#fff;margin:11px 0 8px;letter-spacing:-0.01em">{{ b.feature }}</div>
+            <div style="font-size:13.5px;color:#AEB4BE;line-height:1.6">{{ b.description }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOBAL EVAL ===== -->
+  <section style="max-width:1180px;margin:0 auto;padding:64px 28px 8px">
+    <div style="font-size:13px;font-weight:800;letter-spacing:0.06em;color:#E11924;text-transform:uppercase">글로벌 평가</div>
+    <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:10px 0 26px">글로벌 현황 · 본사 지원 체계</h2>
+
+    <div style="overflow-x:auto;border:1px solid #E7E9ED;border-radius:16px;background:#fff">
+      <div style="min-width:744px">
+        <div style="display:flex;align-items:stretch;border-bottom:2px solid #14161B">
+          <div style="flex:1 1 auto;min-width:264px;padding:15px 18px;font-size:12px;font-weight:800;color:#767D89;position:sticky;left:0;background:#fff;z-index:3">항목</div>
+          <div style="width:160px;flex:none;padding:13px 14px;text-align:left;background:#FCEFF0;border-left:2px solid #E11924;border-right:2px solid #E11924;font-size:14px;font-weight:800;color:#E11924">Bitdefender</div>
+          <div style="width:160px;flex:none;padding:13px 14px;font-size:14px;font-weight:700;color:#14161B">ESET</div>
+          <div style="width:160px;flex:none;padding:13px 14px;font-size:14px;font-weight:700;color:#14161B">Kaspersky</div>
+        </div>
+        <sc-for list="{{ generalRows }}" as="g" hint-placeholder-count="5">
+          <div style="display:flex;align-items:stretch;border-bottom:1px solid #EEF1F4">
+            <div style="flex:1 1 auto;min-width:264px;padding:15px 18px;position:sticky;left:0;background:#fff;z-index:2">
+              <div style="font-size:14px;font-weight:700;color:#14161B">{{ g.label }}</div>
+              <div style="font-size:12.5px;color:#767D89;margin-top:3px;line-height:1.5">{{ g.desc }}</div>
+            </div>
+            <div style="width:160px;flex:none;padding:15px 14px;background:#FCEFF0;border-left:2px solid #E11924;border-right:2px solid #E11924;font-size:13.5px;font-weight:700;color:#B5141C;line-height:1.55">{{ g.bd }}</div>
+            <div style="width:160px;flex:none;padding:15px 14px;font-size:13.5px;color:#3C414C;line-height:1.55">{{ g.eset }}</div>
+            <div style="width:160px;flex:none;padding:15px 14px;font-size:13.5px;color:#3C414C;line-height:1.55">{{ g.kas }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:800;letter-spacing:-0.01em;margin:40px 0 18px">수상 · 인증 실적</h3>
+    <div style="overflow-x:auto;border:1px solid #E7E9ED;border-radius:16px;background:#fff">
+      <div style="min-width:804px">
+        <div style="display:flex;align-items:stretch;border-bottom:2px solid #14161B">
+          <div style="flex:1 1 auto;min-width:264px;padding:15px 18px;font-size:12px;font-weight:800;color:#767D89;position:sticky;left:0;background:#fff;z-index:3">평가 항목</div>
+          <div style="width:180px;flex:none;padding:13px 14px;background:#FCEFF0;border-left:2px solid #E11924;border-right:2px solid #E11924;font-size:14px;font-weight:800;color:#E11924">Bitdefender</div>
+          <div style="width:180px;flex:none;padding:13px 14px;font-size:14px;font-weight:700;color:#14161B">ESET</div>
+          <div style="width:180px;flex:none;padding:13px 14px;font-size:14px;font-weight:700;color:#14161B">Kaspersky</div>
+        </div>
+        <sc-for list="{{ awards }}" as="a" hint-placeholder-count="4">
+          <div style="display:flex;align-items:stretch;border-bottom:1px solid #EEF1F4">
+            <div style="flex:1 1 auto;min-width:264px;padding:15px 18px;position:sticky;left:0;background:#fff;z-index:2;font-size:14px;font-weight:700;color:#14161B;line-height:1.5">{{ a.item }}</div>
+            <div style="width:180px;flex:none;padding:15px 14px;background:#FCEFF0;border-left:2px solid #E11924;border-right:2px solid #E11924;font-size:13.5px;font-weight:700;color:#B5141C;line-height:1.55">{{ a.bd }}</div>
+            <div style="width:180px;flex:none;padding:15px 14px;font-size:13.5px;color:#3C414C;line-height:1.55">{{ a.eset }}</div>
+            <div style="width:180px;flex:none;padding:15px 14px;font-size:13.5px;color:#3C414C;line-height:1.55">{{ a.kas }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section style="max-width:1180px;margin:0 auto;padding:64px 28px">
+    <div style="background:#FCEFF0;border:1px solid #F6D2D5;border-radius:20px;padding:48px 44px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+      <div>
+        <h2 style="font-size:26px;font-weight:800;letter-spacing:-0.02em;margin:0;color:#14161B">제품 상세는 소개서에서 확인하세요</h2>
+        <p style="font-size:15px;color:#3C414C;margin:12px 0 0;max-width:38em;line-height:1.6">기능별 동작 방식과 도입 구성은 Bitdefender GravityZone 제품 소개서에서 자세히 안내합니다.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="{{ intro }}" style="padding:15px 26px;font-size:15px;font-weight:700;color:#fff;background:#E11924;border-radius:10px;text-decoration:none;white-space:nowrap">제품 소개서 보기</a>
+        <button onClick="{{ openInquiry }}" style="padding:15px 26px;font-size:15px;font-weight:700;color:#14161B;background:#fff;border:1px solid #DDE1E6;border-radius:10px;cursor:pointer;white-space:nowrap;font-family:inherit">도입 문의하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:#14161B;color:#fff">
+    <div style="max-width:1180px;margin:0 auto;padding:52px 28px 44px;display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <img src="assets/logos/bitdefender-icon.webp" alt="Bitdefender" style="width:32px;height:32px;border-radius:8px;display:block;flex:none">
+          <div style="font-size:16px;font-weight:800">Bitdefender GravityZone</div>
+        </div>
+        <p style="font-size:13.5px;color:#AEB4BE;margin:16px 0 0;line-height:1.7">본 비교 자료는 각 솔루션의 공개 사양을 기준으로 작성되었습니다.<br>국내 총판 · 기술지원 : 블루테엔에스 (BlueTNS)</p>
+        <div style="font-size:13px;color:#767D89;margin-top:18px;font-style:italic">Trust base is our pride</div>
+      </div>
+      <div style="min-width:300px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.05em;color:#767D89;text-transform:uppercase;margin-bottom:16px">블루티엔에스 기본정보</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:13.5px;line-height:1.5">
+          <div style="display:flex;gap:12px"><span style="width:78px;flex:none;color:#767D89">사업자번호</span><span style="color:#D7DBE0">114-86-93156</span></div>
+          <div style="display:flex;gap:12px"><span style="width:78px;flex:none;color:#767D89">법인등록번호</span><span style="color:#D7DBE0">110111-4777037</span></div>
+          <div style="display:flex;gap:12px"><span style="width:78px;flex:none;color:#767D89">주소</span><span style="color:#D7DBE0">(06524) 서울특별시 서초구 강남대로 101길 43<br>유영빌딩 5층 (잠원동 9-4)</span></div>
+          <div style="display:flex;gap:12px"><span style="width:78px;flex:none;color:#767D89">대표</span><span style="color:#D7DBE0">박인호</span></div>
+          <div style="display:flex;gap:12px"><span style="width:78px;flex:none;color:#767D89">대표번호</span><span style="color:#D7DBE0">02-595-7782 · 팩스 02-595-7009</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08)">
+      <div style="max-width:1180px;margin:0 auto;padding:18px 28px;font-size:12px;color:#767D89">© 2026 BlueTNS. Bitdefender 및 GravityZone은 Bitdefender의 상표입니다.</div>
+    </div>
+  </footer>
+
+  <!-- ===== INQUIRY MODAL ===== -->
+  <sc-if value="{{ inquiryOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeAll }}" style="position:fixed;inset:0;z-index:100;background:rgba(20,22,27,0.55);display:flex;align-items:center;justify-content:center;padding:20px">
+      <div onClick="{{ stop }}" style="background:#fff;border-radius:18px;max-width:520px;width:100%;max-height:86vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,0.32)">
+        <div style="padding:26px 28px 20px;border-bottom:1px solid #EEF1F4;display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+          <div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.04em;color:#E11924;text-transform:uppercase">무료 상담 · 도입 문의</div>
+            <h3 style="font-size:21px;font-weight:800;margin:8px 0 0;color:#14161B">담당자에게 문의하세요</h3>
+          </div>
+          <button onClick="{{ closeAll }}" style="flex:none;width:34px;height:34px;border:none;background:#F1F3F5;border-radius:8px;cursor:pointer;font-size:16px;color:#767D89">✕</button>
+        </div>
+        <div style="padding:6px 28px 26px">
+          <sc-for list="{{ visibleContacts }}" as="c" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #F1F3F5">
+              <div style="flex:1 1 auto;min-width:0">
+                <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-size:16px;font-weight:800;color:#14161B">{{ c.name }}</span><span style="font-size:12.5px;color:#767D89">{{ c.title }}</span></div>
+                <div style="font-size:13.5px;color:#3C414C;margin-top:5px">{{ c.phone }}</div>
+                <div style="font-size:13.5px;color:#767D89">{{ c.email }}</div>
+              </div>
+              <div style="flex:none;display:flex;gap:8px">
+                <a href="{{ c.tel }}" style="padding:9px 14px;font-size:13px;font-weight:700;color:#14161B;background:#F1F3F5;border-radius:8px;text-decoration:none">전화</a>
+                <a href="{{ c.mailto }}" style="padding:9px 14px;font-size:13px;font-weight:700;color:#fff;background:#E11924;border-radius:8px;text-decoration:none">메일 보내기</a>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ noVisible }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:28px 0;text-align:center;font-size:14px;color:#767D89">노출로 설정된 담당자가 없습니다. 우측 상단 ⚙ 설정에서 담당자를 선택해 주세요.</div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== PASSWORD GATE ===== -->
+  <sc-if value="{{ pwModal }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeAll }}" style="position:fixed;inset:0;z-index:101;background:rgba(20,22,27,0.55);display:flex;align-items:center;justify-content:center;padding:20px">
+      <div onClick="{{ stop }}" style="background:#fff;border-radius:18px;max-width:380px;width:100%;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,0.32)">
+        <div style="font-size:12px;font-weight:800;color:#E11924;text-transform:uppercase;letter-spacing:0.04em">관리자 설정</div>
+        <h3 style="font-size:19px;font-weight:800;margin:8px 0 4px;color:#14161B">비밀번호 입력</h3>
+        <p style="font-size:13px;color:#767D89;margin:0 0 16px;line-height:1.5">설정(담당자 관리)에 접근하려면 비밀번호를 입력하세요.</p>
+        <input type="password" value="{{ pwInput }}" onChange="{{ onPwInput }}" onKeyDown="{{ onPwKey }}" placeholder="비밀번호" style="width:100%;padding:12px 14px;border:1px solid {{ pwBorder }};border-radius:9px;font-size:14px;font-family:inherit;box-sizing:border-box;color:#14161B">
+        <sc-if value="{{ pwError }}" hint-placeholder-val="{{ false }}"><div style="font-size:12.5px;color:#E11924;margin-top:8px">비밀번호가 올바르지 않습니다.</div></sc-if>
+        <div style="display:flex;gap:8px;margin-top:18px">
+          <button onClick="{{ closeAll }}" style="flex:1;padding:12px;font-size:14px;font-weight:700;color:#14161B;background:#F1F3F5;border:none;border-radius:9px;cursor:pointer;font-family:inherit">취소</button>
+          <button onClick="{{ submitPw }}" style="flex:1;padding:12px;font-size:14px;font-weight:700;color:#fff;background:#E11924;border:none;border-radius:9px;cursor:pointer;font-family:inherit">확인</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== SETTINGS MODAL ===== -->
+  <sc-if value="{{ settingsOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeAll }}" style="position:fixed;inset:0;z-index:101;background:rgba(20,22,27,0.55);display:flex;align-items:center;justify-content:center;padding:20px">
+      <div onClick="{{ stop }}" style="background:#fff;border-radius:18px;max-width:680px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,0.32)">
+        <div style="padding:26px 28px 18px;border-bottom:1px solid #EEF1F4;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:sticky;top:0;background:#fff;z-index:2">
+          <div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.04em;color:#E11924;text-transform:uppercase">설정 · 담당자 관리</div>
+            <h3 style="font-size:21px;font-weight:800;margin:8px 0 4px;color:#14161B">Contact Us 담당자</h3>
+            <p style="font-size:12.5px;color:#767D89;margin:0;line-height:1.5">체크된 담당자만 '도입 문의' 팝업에 노출됩니다. 변경 내용은 이 브라우저에 저장됩니다.</p>
+          </div>
+          <button onClick="{{ closeAll }}" style="flex:none;width:34px;height:34px;border:none;background:#F1F3F5;border-radius:8px;cursor:pointer;font-size:16px;color:#767D89">✕</button>
+        </div>
+        <div style="padding:8px 28px 24px">
+          <sc-for list="{{ contactsView }}" as="c" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #F1F3F5">
+              <div onClick="{{ c.onToggle }}" title="노출 여부" style="flex:none;width:26px;height:26px;border-radius:7px;border:2px solid {{ c.checkBorder }};background: {{ c.checkBg }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;cursor:pointer">{{ c.checkMark }}</div>
+              <div style="flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <input value="{{ c.name }}" onChange="{{ c.onName }}" placeholder="이름" style="padding:9px 11px;border:1px solid #DDE1E6;border-radius:8px;font-size:13.5px;font-family:inherit;color:#14161B;box-sizing:border-box">
+                <input value="{{ c.title }}" onChange="{{ c.onTitle }}" placeholder="직함" style="padding:9px 11px;border:1px solid #DDE1E6;border-radius:8px;font-size:13.5px;font-family:inherit;color:#14161B;box-sizing:border-box">
+                <input value="{{ c.phone }}" onChange="{{ c.onPhone }}" placeholder="연락처" style="padding:9px 11px;border:1px solid #DDE1E6;border-radius:8px;font-size:13.5px;font-family:inherit;color:#14161B;box-sizing:border-box">
+                <input value="{{ c.email }}" onChange="{{ c.onEmail }}" placeholder="이메일" style="padding:9px 11px;border:1px solid #DDE1E6;border-radius:8px;font-size:13.5px;font-family:inherit;color:#14161B;box-sizing:border-box">
+              </div>
+            </div>
+          </sc-for>
+          <div style="text-align:right;padding-top:18px">
+            <button onClick="{{ closeAll }}" style="padding:12px 24px;font-size:14px;font-weight:700;color:#fff;background:#14161B;border:none;border-radius:9px;cursor:pointer;font-family:inherit">완료</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;highlightBd&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;console&quot;,&quot;windows&quot;,&quot;linux&quot;],&quot;default&quot;:&quot;console&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  PW = 'bts7782!';
+  KEY = 'bdcompare_contacts_v1';
+  state = {
+    activeTab: null, expanded: null, tick: 0,
+    inquiryOpen: false, pwModal: false, settingsOpen: false, pwInput: '', pwError: false,
+    contacts: [
+      { name: '박인호', title: '대표이사', phone: '010-4658-4866', email: 'ihpark@bluetns.co.kr', visible: true },
+      { name: '허성경', title: '이사 · 총괄본부장', phone: '010-4072-7700', email: 'skheo@bluetns.co.kr', visible: true },
+      { name: '나선열', title: '부장 · 사업부장', phone: '010-2008-9539', email: 'syna@bluetns.co.kr', visible: true },
+      { name: '안병현', title: '차장 · 팀장', phone: '010-6437-4963', email: 'bhahn@bluetns.co.kr', visible: true },
+      { name: '백지형', title: '과장', phone: '010-5128-2599', email: 'jhbaek@bluetns.co.kr', visible: true },
+      { name: '신성원', title: '대리', phone: '010-9097-8444', email: 'swshin@bluetns.co.kr', visible: true }
+    ]
+  };
+
+  componentDidMount() {
+    try { const saved = localStorage.getItem(this.KEY); if (saved) { const arr = JSON.parse(saved); if (Array.isArray(arr) && arr.length) this.setState({ contacts: arr }); } } catch (e) {}
+    if (!window.COMPARE_DATA) {
+      this._t = setInterval(() => {
+        if (window.COMPARE_DATA) { clearInterval(this._t); this.setState(s => ({ tick: s.tick + 1 })); }
+      }, 60);
+    }
+  }
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+
+  persist(arr) { try { localStorage.setItem(this.KEY, JSON.stringify(arr)); } catch (e) {} }
+  updateContact(i, field, val) { this.setState(s => { const arr = s.contacts.map((c, idx) => idx === i ? { ...c, [field]: val } : c); this.persist(arr); return { contacts: arr }; }); }
+  toggleVisible(i) { this.setState(s => { const arr = s.contacts.map((c, idx) => idx === i ? { ...c, visible: !c.visible } : c); this.persist(arr); return { contacts: arr }; }); }
+  openInquiry() { this.setState({ inquiryOpen: true }); }
+  openGate() { this.setState({ pwModal: true, pwInput: '', pwError: false }); }
+  submitPw() { if (this.state.pwInput === this.PW) this.setState({ settingsOpen: true, pwModal: false, pwInput: '', pwError: false }); else this.setState({ pwError: true }); }
+  closeAll() { this.setState({ inquiryOpen: false, pwModal: false, settingsOpen: false, pwError: false }); }
+
+  chip(val) {
+    if (val === 'O') return { bg: '#16875A', color: '#ffffff', glyph: '✓' };
+    if (val === 'T') return { bg: '#D98A00', color: '#ffffff', glyph: '△' };
+    if (val === 'X') return { bg: '#EBEDF0', color: '#99A0AB', glyph: '✕' };
+    return { bg: '#EBEDF0', color: '#99A0AB', glyph: val || '–' };
+  }
+
+  renderVals() {
+    const D = window.COMPARE_DATA;
+    const intro = 'https://bibleheo.github.io/Bitdefender-Intro/';
+    const highlightBd = this.props.highlightBd ?? true;
+    const compact = this.props.compact ?? false;
+    const rowPadV = compact ? '9px' : '14px';
+
+    const contactsView = this.state.contacts.map((c, i) => ({
+      name: c.name, title: c.title, phone: c.phone, email: c.email, visible: c.visible,
+      mailto: 'mailto:' + c.email + '?subject=' + encodeURIComponent('[Bitdefender] 도입 문의'),
+      tel: 'tel:' + (c.phone || '').replace(/[^0-9]/g, ''),
+      onName: (e) => this.updateContact(i, 'name', e.target.value),
+      onTitle: (e) => this.updateContact(i, 'title', e.target.value),
+      onPhone: (e) => this.updateContact(i, 'phone', e.target.value),
+      onEmail: (e) => this.updateContact(i, 'email', e.target.value),
+      onToggle: () => this.toggleVisible(i),
+      checkBg: c.visible ? '#E11924' : '#ffffff',
+      checkBorder: c.visible ? '#E11924' : '#C9CED6',
+      checkMark: c.visible ? '✓' : ''
+    }));
+    const visibleContacts = contactsView.filter(c => c.visible);
+    const ui = {
+      contactsView, visibleContacts,
+      hasVisible: visibleContacts.length > 0,
+      noVisible: visibleContacts.length === 0,
+      inquiryOpen: this.state.inquiryOpen, pwModal: this.state.pwModal, settingsOpen: this.state.settingsOpen,
+      pwInput: this.state.pwInput, pwError: this.state.pwError,
+      pwBorder: this.state.pwError ? '#E11924' : '#DDE1E6',
+      openInquiry: () => this.openInquiry(), openGate: () => this.openGate(),
+      submitPw: () => this.submitPw(), closeAll: () => this.closeAll(),
+      stop: (e) => e.stopPropagation(),
+      onPwInput: (e) => this.setState({ pwInput: e.target.value, pwError: false }),
+      onPwKey: (e) => { if (e.key === 'Enter') this.submitPw(); }
+    };
+
+    if (!D) {
+      return { intro, rowPadV, ...ui, tabs: [], totals: [], activeScores: [], rows: [], bdOnly: [], bdOnlyTop: [], bdOnlyBottom: [], generalRows: [], awards: [], activeLabel: '', activeCount: '' };
+    }
+
+    const vendors = ['Bitdefender', 'Ahnlab', 'ESET', 'Kaspersky'];
+    const labels = D.meta.vendor_labels;
+    const cats = D.meta.categories;
+    const activeTab = this.state.activeTab || this.props.defaultTab || 'console';
+    const cat = cats.find(c => c.id === activeTab) || cats[0];
+
+    // overall totals
+    const agg = {};
+    vendors.forEach(v => agg[v] = { full: 0, partial: 0, none: 0, total: 0 });
+    cats.forEach(c => vendors.forEach(v => {
+      const s = c.scores[v];
+      agg[v].full += s.full; agg[v].partial += s.partial; agg[v].none += s.none; agg[v].total += s.total;
+    }));
+    const totals = vendors.map(v => {
+      const a = agg[v]; const isBd = v === 'Bitdefender'; const pct = Math.round(a.full / a.total * 100);
+      return {
+        label: labels[v], scoreText: '전체 ' + a.total + '개 중 ' + a.full + '개 완전 지원',
+        full: a.full, partial: a.partial, none: a.none, total: a.total,
+        fullPct: (a.full / a.total * 100), partialPct: (a.partial / a.total * 100),
+        pctText: pct + '%', isBd,
+        labelColor: isBd ? '#E11924' : '#14161B',
+        cardBg: isBd ? '#FCEFF0' : '#ffffff',
+        cardBorder: isBd ? '2px solid #E11924' : '1px solid #E7E9ED'
+      };
+    });
+
+    const tabs = cats.map(c => {
+      const active = c.id === activeTab;
+      return {
+        id: c.id, label: c.label, count: c.total_features + '개', active,
+        bg: active ? '#ffffff' : 'transparent',
+        fg: active ? '#E11924' : '#767D89',
+        border: active ? '3px solid #E11924' : '3px solid transparent',
+        weight: active ? '800' : '600',
+        onClick: () => this.setState({ activeTab: c.id, expanded: null })
+      };
+    });
+
+    const activeScores = vendors.map(v => {
+      const s = cat.scores[v]; const isBd = v === 'Bitdefender';
+      return {
+        label: labels[v], full: s.full, total: s.total,
+        labelColor: isBd ? '#E11924' : '#14161B',
+        cardBg: isBd ? '#FCEFF0' : '#ffffff',
+        cardBorder: isBd ? '2px solid #E11924' : '1px solid #E7E9ED'
+      };
+    });
+
+    const rows = [];
+    cat.groups.forEach(g => {
+      rows.push({ isGroup: true, isItem: false, name: g.name, key: 'g-' + g.name });
+      g.items.forEach((it, idx) => {
+        const key = cat.id + '/' + g.name + '/' + idx;
+        const hasNote = !!(it.note && it.note.trim());
+        const expanded = this.state.expanded === key;
+        const hasFeature = !!(it.feature && it.feature.trim());
+        const title = hasFeature ? it.feature : it.description;
+        const sub = hasFeature ? it.description : '';
+        const cells = vendors.map(v => {
+          const c = this.chip(it[v]); const isBd = v === 'Bitdefender'; const tint = isBd && highlightBd;
+          return {
+            ...c,
+            cellBg: tint ? '#FCEFF0' : 'transparent',
+            borderLeft: isBd ? '2px solid #E11924' : 'none',
+            borderRight: isBd ? '2px solid #E11924' : 'none'
+          };
+        });
+        rows.push({
+          isGroup: false, isItem: true, key, title, sub, hasNote, expanded, cells,
+          note: it.note,
+          cursor: hasNote ? 'pointer' : 'default',
+          toggle: hasNote ? () => this.setState(s => ({ expanded: s.expanded === key ? null : key })) : null
+        });
+      });
+    });
+
+    const bdOnly = D.bitdefender_only.map(b => ({ category: b.category, group: b.group, feature: b.feature, description: b.description }));
+    const bdOnlyTop = bdOnly.slice(0, 3);
+    const bdOnlyBottom = bdOnly.slice(3);
+
+    const ge = D.global_eval;
+    const generalRows = ge.general.map(r => ({ label: r['항목'], desc: r['설명'], bd: r.Bitdefender, eset: r.ESET, kas: r.Kaspersky }));
+    const sup = ge.support[0];
+    const supMap = (v) => v === 'O' ? '본사 전문인력 직접 대응' : (v === '△' ? '파트너 경유 지원' : v);
+    generalRows.push({ label: sup.item, desc: sup['설명'], bd: supMap(sup.Bitdefender), eset: supMap(sup.ESET), kas: supMap(sup.Kaspersky) });
+    const awards = ge.awards.map(a => ({ item: a.item, bd: a.Bitdefender, eset: a.ESET, kas: a.Kaspersky }));
+
+    return {
+      intro, rowPadV, ...ui, tabs, totals, activeScores, rows, bdOnly, bdOnlyTop, bdOnlyBottom, generalRows, awards,
+      activeLabel: cat.label, activeCount: cat.total_features + '개 기능'
+    };
+  }
+}
+</script>
+</body>
+</html>
