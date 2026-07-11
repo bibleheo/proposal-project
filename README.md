@@ -17,6 +17,7 @@
 | [`bts-proposal/`](./bts-proposal/) | 블루티엔에스 제안서 | `bibleheo/bts-proposal` |
 | [`Bitdefender-Intro/`](./Bitdefender-Intro/) | Bitdefender 소개 | `bibleheo/Bitdefender-Intro` |
 | [`Bitdefender-Compare/`](./Bitdefender-Compare/) | Bitdefender 기능 비교 | `bibleheo/Bitdefender-Compare` |
+| [`bitdefender-edr/`](./bitdefender-edr/) | Bitdefender EDR 도입 제안서 | (단일 HTML 업로드) |
 
 각 폴더는 원본 리포지토리의 `index.html`을 진입점으로 그대로 유지합니다.
 
